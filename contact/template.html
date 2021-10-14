@@ -1,0 +1,65 @@
+T('home_contact',`
+<div class="home contact">
+	<div class="subHead W">
+		Contattaci
+	</div>
+	<div class="will">
+		<h1>Aiutarti per noi è importante</h1>
+		<h2>Per tutte le richieste di informazioni o chiarimenti puoi compilare il form sottostante.</h2>
+	</div>
+	<div class="grey">
+		[% var usr = appCtx.user?appCtx.user:{}; %]
+		<div class="field">
+			<input onfocus="this.removeClass('error')" type="text" id="cnt_email" placeholder="Email" value="[%= encodeAttribute(usr.email) %]">
+			<label for="cnt_email">
+				<span class="err">* L'email non è valida</span>
+			</label>
+		</div>
+		<div class="field">
+			<input onfocus="this.removeClass('error')" type="text" id="cnt_firstname" placeholder="Nome" value="[%= encodeAttribute(usr.firstname) %]">
+			<label for="cnt_firstname">
+				<span class="err">* Il nome è obbligatorio</span>
+			</label>
+		</div>
+		<div class="field">
+			<input onfocus="this.removeClass('error')" type="text" id="cnt_lastname" placeholder="Cognome" value="[%= encodeAttribute(usr.lastname) %]">
+			<label for="cnt_lastname">
+				<span class="err">* Il cognome è obbligatorio</span>
+			</label>
+		</div>
+		<div class="field ta">
+			<textarea onfocus="this.removeClass('error')" type="text" id="message" placeholder="Messaggio"></textarea>
+			<label for="message">
+				<span class="err">* Inserisci un messaggio</span>
+			</label>
+		</div>
+		<div class="consent">
+			Premendo il pulsante Invia, dichiaro di aver letto e compreso le informazioni disponibili
+			<a title="Informativa Form Contatto" href="[%= basePath %]footer/informativa_privacy.pdf" target="_blank">qui</a>.
+		</div>
+		<div><button onclick="sendMsg()">invia</button></div>
+	</div>
+</div>
+[%= T('header').render({nav:groupName(),navAction:'goGroup()',navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+T('home_contact_confirm',`
+<div class="home contact">
+	<div class="subHead W">
+		Contattaci
+	</div>
+	<div class="will contact">
+		Il tuo messaggio è stato inviato!<br>
+		<br>
+		Cordiali saluti,<br>
+		<b>LO STAFF</b>
+	</div>
+</div>
+[%= T('header').render({nav:groupName(),navAction:'goGroup()',navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+`)
+
+
+

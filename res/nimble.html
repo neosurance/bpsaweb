@@ -1,0 +1,149 @@
+T('cookie',`
+[% if(!localStorage.getItem('nimble.cooked')) { %]
+<div id="cookie">
+	<div id="cookiecontent">
+		<div>
+			<b>Utilizziamo i cookie per fornire i nostri servizi</b>. Con l'utilizzo del nostro sito accetti i cookie. 
+			Per saperne di più leggi la nostra <a href="[%= basePath %]footer/informativa_sito.pdf" target="_blank">informativa sito</a>.
+		</div>
+		<button class="light" onclick="cooked()">OK</button>
+	</div>
+</div>
+[% } %]
+`)
+
+T('pay_error',`
+<div class="modal_close" onclick="hideModal()"><img src="[%= resPath %]x.svg"></div>
+<div class="payerror">
+	<div class="modal_title">Ops!</div>
+	<div class="modal_error">
+		Qualcosa è andato storto
+	</div>
+	<button onclick="hideModal()">chiudi</button>
+</div>
+`)
+
+T('header',`
+<div class="header" id="header">
+	<div style="height:30px"><img class="logo" src="[%= resPath %]logo-bpsa-net.svg" 
+		[% if(navLogo) { %] 
+			onclick="[%= navLogo %]"
+		[% } else if(navAction) { %] 
+			onclick="[%= navAction %]"
+		[% } %]
+	></div>
+	<div class="user [%= appCtx.user?'logged':'' %]">
+		[% if(userLogged()) { %]
+			<div class="user_name" onclick="toggleMenu()">Ciao <b>[%= appCtx.user.profile.firstname %]</b></div>
+			<div class="profile" onclick="toggleMenu()"><img src="[%= resPath %]user.svg"></div>
+			<div id="user_menu" class="user_menu hidden">
+				<div class="item [%= (navPath == 'history')?'inside':'' %]" onclick="goTo('history/')">
+					<img src="[%= resPath %]item_prods.svg"><label>Le mie polizze</label>
+				</div>
+				<div class="item" onclick="logout()">
+					<img src="[%= resPath %]item_logout.svg"><label>Esci</label>
+				</div>
+			</div>
+		[% }else{ %]
+			<div class="login"><b onclick="showLogin()">accedi</b></div>
+			<div class="profile"><img src="[%= resPath %]user.svg"></div>
+		[% } %]
+	</div>
+	<div class="nav [%= navClass %]" [% if(navAction) { %] onclick="[%= navAction %]"[% } %]>
+		[% if(navAction) { %]<img src="[%= resPath %]back.svg">[% } %]
+		<label>[%= nav %]</label>
+	</div>
+</div>
+`)
+
+T('footer',`
+<div class="footer">
+	<div class="links">
+		<a href="javascript:goToContact('contact/index.html');">Contattaci</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="[%= basePath %]complaint/index.html">Reclami</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="[%= basePath %]footer/informativa_sito.pdf" target="_blank">Informativa sito</a>
+		<span class="inline_desktop">&nbsp;&nbsp;|&nbsp;&nbsp;</span><br class="mobile">
+		<a href="[%= basePath %]footer/informativa_cookie.pdf" target="_blank">Cookie policy</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="[%= basePath %]footer/informativa_privacy.pdf" target="_blank">Privacy policy</a>
+	</div>
+	<div class="payment">
+			Metodi di pagamento<br>
+			<img src="[%= resPath %]loghi_cc.svg">
+	</div>
+	<div class="copy">
+		<img style="margin-bottom:8px;height:15px" src="[%= resPath %]logo-bpsa-b.svg"><br>	
+		Banca Popolare Sant'Angelo Società cooperativa per azioni, con sede in Corso Vittorio Emanuele 10, 92027 - Licata (AG)<br>
+		Uffici Direttivi in Via Enrico Albanese 94, 90139 - Palermo (PA)<br>
+		Iscritta al Registro delle Imprese di Agrigento CF/Partita IVA 00089160840<br>
+		Iscrizione all'Albo delle Banche n. 1571, iscrizione REA n. AG 19267<br>
+		Telefono: 0922.860111 │ PEC: direzionegenerale@postacert.bancasantangelo.com │ Iscrizione RUI : D000109153
+	</div>
+</div>
+`)
+
+T('login',`
+<div class="modal_close" onclick="hideModal()"><img src="[%= resPath %]x.svg"></div>
+<div class="login">
+	<div class="modal_title">Accedi</div>
+	<div class="modal_hint">
+		Inserisci la tua Email
+	</div>
+	<div class="field">
+		<input onfocus="this.removeClass('error')" type="text" id="login_email" placeholder="la tua email" onkeyup="enter(event,checkEmail)" value="[%= encodeAttribute(appCtx.email) %]">
+		<label for="login_email">
+			<img src="[%= resPath %]ico_email.svg">
+			<span id="login_email_err" class="err"></span>
+		</label>
+	</div>
+	<button onclick="checkEmail()">accedi</button>
+</div>
+`)
+
+T('magicLinked',`
+<div class="modal_close" onclick="hideModal()"><img src="[%= resPath %]x.svg"></div>
+<div>
+	<div class="modal_title">Link di Accesso</div>
+	<div class="modal_hint">controlla la tua casella di posta</div>
+	<div class="modal_msg">
+		Ti abbiamo inviato una email a<br>
+		<img src="[%= resPath %]ico_email.svg"><br>
+		<b>[%= appCtx.email %]</b><br>
+	</div>
+	<div class="action">Controlla la posta in arrivo e clicca sul link di accesso</div>
+	<button class="white" onclick="askForMagic()">invia di nuovo</button><br>
+	<div class="modal_msg small">
+		<br>
+		<img src="[%= resPath %]ico_lamp.svg"><br>
+		<b>L'email con il link di accesso ti arriverà</b><br>
+		da: polizze@netinsurance.it<br>
+		soggetto: Accedi magicamente
+	</div>
+</div>
+`)
+
+T('magicLogin',`
+<div class="modal_close" onclick="hideModal()"><img src="[%= resPath %]x.svg"></div>
+<div class="login">
+	<div class="modal_title">Benvenuto [%= encodeHTML(getParameter('magicName')) %]</div>
+	<div style="padding-bottom:10px" class="check">
+		<input type="checkbox" id="remember"><label for="remember">Ricordami</label>
+	</div>
+	<button onclick="magicLogin()">accedi</button>
+</div>
+`)
+
+T('not_for_you',`
+<div class="modal_close" onclick="hideModal()"><img src="[%= resPath %]x.svg"></div>
+<div style="width:250px">
+	<div style="padding:20px">
+		Per proseguire con l'acquisto<br>
+		della polizza consulta prima<br>
+		il sito della banca:
+	</div>
+	<b><a href="https://www.bancasantangelo.com/netinsurance/">bancasantangelo.com/netinsurance</a></b>
+	<div style="padding:20px">
+		<img style="height:80px" src="[%= resPath %]finger.svg"><br>
+	</div>
+	<button onclick="location.assign('https://www.bancasantangelo.com/netinsurance/')">vai</button>
+</div>
+`)

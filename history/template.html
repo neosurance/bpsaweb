@@ -1,0 +1,23 @@
+T('home_history',`
+<div class="home history">
+[% if(historyCtx.policies && historyCtx.policies.length > 0) { %]
+	<div class="subHead">Le mie polizze</div>
+	[% 
+		for(var i=historyCtx.policies.length -1; i >= 0; i--) { 
+			var policy = historyCtx.policies[i].policy; 
+			var product = historyCtx.policies[i].product; 
+	%]
+		[%= T(product.code + '_detail').render({policy:policy,product:product}) %]
+	[% } %]
+[% }else{ %]
+	<div class="none">
+		Non hai polizze attive!
+	</div>
+[% } %]	
+</div>
+[%= T('header').render({nav:'indietro',navAction:'goGroup()',navClass:'back',navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+

@@ -1,0 +1,143 @@
+T('subscription',`
+[% var policy = subCtx.policy; %]
+<div class="home claim">
+	<div style="padding-bottom:80px" class="max800">
+		<div style="padding-top:30px;font-size:24px;font-weight:700">
+			Gestione sottoscrizione
+		</div>
+		<div style="font-size:14px">
+			Qui potrai aggiornare o modificare il tuo metodo di pagamento e gestire la sottoscrizione alla polizza.
+		</div>
+		[% if(policy) { %]
+			<div class="splitbox">
+				<div class="det">
+					Polizza:<br>
+					<p style="margin-top:4px;font-weight:600;font-size:24px;color: #0073d2">Net Pet [%= policy.parameters.plan=='gold'?'Gold':'Silver' %]</p>
+					<br>
+					Numero polizza: <b>[%= policy.policyCode %]</b><br>
+					<br>
+					Contraente: <b>[%= encodeHTML(policy.profile.firstname) %] [%= encodeHTML(policy.profile.lastname) %]</b><br>
+					<br>
+					[%= policy.parameters.who=='dog'?'Cane':'Gatto' %] coperto dall'assicurazione:
+					<b>[%= encodeHTML(policy.parameters.petName) %]</b><br>
+				</div><div class="vld">
+					<p style="font-weight:700;margin-bottom:8px">Polizza valida</p>
+					dal<br>
+					[%
+						var vs = new moment(policy.validityStart).tz('Europe/Rome');
+						var ve = new moment(policy.validityEnd).tz('Europe/Rome');
+					%]
+					<p class="day">[%= vs.format('DD/MM/YYYY') %]</p>
+					<p class="time">dalle ore <b>24:00</b></p>
+					al<br>
+					<p class="day">[%= ve.format('DD/MM/YYYY') %]</p>
+					<p class="time">alle ore <b>24:00</b></p>
+					<span style="font-size:14px;line-height:16px">
+						La polizza si rinnoverà automaticamente ogni mese.<br>
+						Data prossimo rinnovo
+					</span>
+					<p style="padding-top:10px" class="day">[%= ve.format('DD/MM/YYYY') %]</p>
+				</div>
+			</div>
+			[% if(policy.parameters.subscriptionStatus == 'active' || policy.parameters.subscriptionStatus == 'late') { %]
+				[% if(policy.parameters.subscriptionStatus == 'late') { %]
+					<div style="padding-top:20px;color:#b00000;font-size:14px;font-weight:600">Mancato pagamento, hai tempo fino al [%= moment(policy.validityEnd).tz('Europe/Rome').add(15, 'day').format('DD/MM/YYYY') %] per fornire un metodo di pagamento valido</div>
+				[% } %]
+				<div class="section" id="pay">
+					<img class="icon" src="../res/ico_pay.svg">
+					<h2>Metodo di pagamento</h2>
+					<div class="stripe">
+						<div class="logo"><img src="[%= resPath %]stripe.svg"></div>
+						<div id="stripe"></div>
+						<div class="stripe-privacy"><a target="_blank" href="https://stripe.com/it-IT/privacy">Informativa Privacy del sistema di pagamento Stripe</a></div>
+					</div>
+					<br>
+					<br>
+					<button style="width:240px" id="chooseButton" class="disabled">aggiorna</button>
+				</div>
+				<div style="padding-top:80px">
+					<button style="width:240px" class="white" onclick="showConfirm()">annulla sottoscrizione</button>
+				</div>
+			[% } %]
+		[% }else{ %]
+			<div style="height:220px"></div>
+		[% } %]
+	</div>
+</div>
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+
+T('stripe',`
+[% for(var i = 0; stripeSources && i < stripeSources.length; i++) { %]
+	<div onclick="selectPaymentSrc('[%= stripeSources[i].id %]')" id="[%= stripeSources[i].id %]" class="stripe-row [% if(stripeSources[i].id == stripeDefaultSource) { %]selected[% } %]">
+		[% if(stripeSources[i].brand.toLowerCase().indexOf('visa') >=0) { %]
+			<img src="[%= resPath %]visa.svg">
+		[% } else if(stripeSources[i].brand.toLowerCase().indexOf('master') >=0) { %]
+			<img src="[%= resPath %]master.svg">
+		[% } else if(stripeSources[i].brand.toLowerCase().indexOf('american') >=0) { %]
+			<img src="[%= resPath %]amex.svg">
+		[% } else { %]
+			<img src="[%= resPath %]cc.svg">
+		[% } %]
+		<span>●●●● ●●●● ●●●●</span> [%= stripeSources[i].last4 %]
+	</div>
+[% } %]
+<div style="height:44px;">
+	<div id="addCard" onclick="addCard()" style="[% if(!stripeSources || stripeSources.length == 0) { %] display:none; [% } %]">Aggiungi metodo di pagamento</div>
+	<form action="/charge" method="post" id="payment-form" style="[% if(stripeSources && stripeSources.length > 0) { %] display:none [% } %]">
+		<div id="card-element"></div>
+		<div id="card-errors" role="alert"></div>
+	</form>
+</div>
+`)
+
+T('confirm',`
+<div class="home claim">
+	<div class="max800">
+		<div style="font-size:26px;color:#0073d2;padding-top:20px;padding-bottom:20px">
+			<b>Sei sicuro di non voler più proteggere [%= encodeHTML(policy.parameters.petName) %]?</b>
+		</div>
+		<img style="width:100px" src="sad_[%= policy.parameters.who %].svg">
+		<div style="font-size:16px;color:#333333;padding-top:20px;padding-bottom:40px">
+			La sottoscrizione della polizza sarà interrotta alla scadenza prevista.
+		</div>
+		<div style="padding-bottom:30px">
+			<button style="width:240px" class="white" onclick="doDelete()">SI CONFERMO</button>
+		</div>
+		<div style="padding-bottom:80px">
+			<button style="width:240px" class="white" onclick="initPage()">ANNULLA</button>
+		</div>
+	</div>
+</div>
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+T('deleted',`
+<div class="home claim">
+	<div class="max800">
+		<div style="font-size:26px;color:#0073d2;padding-top:20px;padding-bottom:20px">
+			<b>Sottoscrizione<br>annullata</b>
+		</div>
+		<img style="width:70px" src="deleted.svg">
+		<div style="font-size:16px;color:#333333;padding-top:20px">
+			La polizza <b>Net Pet [%= policy.parameters.plan=='gold'?'Gold':'Silver' %]</b><br>
+			scadrà il giorno
+		</div>
+		<div style="font-size:26px;color:#0073d2;padding-top:10px">
+			[% var ve = new moment(policy.validityEnd).tz('Europe/Rome'); %]
+			[%= ve.format('DD/MM/YYYY') %]
+		</div>
+		<div style="font-size:16px;color:#333333;padding-bottom:120px">
+			alle ore 24:00
+		</div>
+	</div>
+</div>
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)

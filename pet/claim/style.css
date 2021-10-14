@@ -1,0 +1,228 @@
+.max800 {
+	display: inline-block;
+	width: 100%;
+	max-width: 800px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.splitbox {
+	margin-top: 20px;
+	border-radius: 6px;
+	border: solid 1px #cccccc;
+	overflow: hidden;
+	font-size: 0;
+}
+
+.splitbox .det {
+	padding: 20px;
+	background-color: #f0f0f0;
+	border-right: solid 1px #cccccc;
+	min-height: 240px;
+	width: 60%;
+	text-align: left;
+	font-size: 14px;
+	line-height: 18px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.splitbox .vld {
+	display: inline-block;
+	font-size: 16px;
+	line-height: 24px;
+	width: 40%;
+	padding: 20px;
+}
+
+.vld .day {
+	font-size: 19px;
+	font-weight: 600;
+	color: #0073d2;
+}
+
+.vld .time {
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+.questions {
+	font-size: 0;
+	padding-top: 40px;
+	padding-bottom: 60px;
+}
+
+.question {
+	position: relative;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: left;
+	vertical-align: top;
+	margin-bottom: 15px;
+}
+
+.question.l, .question.r {
+	display: inline-block;
+}
+
+.question.l {
+	width: 50%;
+	padding-right: 20px;
+}
+
+.question.r {
+	width: 50%;
+	padding-left: 20px;
+}
+
+.question span {
+	font-weight: 300;
+	color: #0073d2;
+}
+
+.question .note {
+	font-size: 14px;
+	font-weight: 300;
+	padding-bottom: 20px;
+}
+
+.question .directions {
+	font-size: 16px;
+	color: #0073d2;
+}
+
+.photos {
+	font-size: 0;
+	padding-bottom: 30px;
+}
+
+.photos .add {
+	padding: 25px;
+	border: dotted 2px #cccccc;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	margin: 10px;
+	margin-top: 25px;
+}
+
+.photos .add input {
+	position: absolute;
+	width: 90px;
+	height: 80px;
+	top: 0px;
+	left: 0px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+
+.photos .add img {
+	height: 30px;
+}
+
+.photo {
+	position: relative;
+	margin-top: 25px;
+	margin-right: 25px;
+	display: inline-block;
+	width: 110px;
+	vertical-align: top;
+}
+
+.photo div {
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	top: -12px;
+	right: -12px;
+}
+
+.photo img {
+	width: 100%;
+}
+
+.question .error+label {
+	display: inline-block;
+}
+
+.question label {
+	display: none;
+	color: #b00000;
+	left: 0px;
+	position: absolute;
+	font-size: 13px;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+.question.r  label {
+	left: 20px;
+}
+
+.add label {
+	top: 87px;
+	left: -3px;
+}
+
+@media only screen and (max-width: 640px) {
+	.splitbox .det {
+		border: 0;
+		display: block;
+		width: auto;
+		min-height: unset;
+	}
+	.splitbox .vld {
+		display: block;
+		width: auto;
+		text-align: left;
+		background-color: #f0f0f0;
+	}
+	.question.l, .question.r {
+		display: block;
+		width: auto;
+		padding: 0;
+	}
+	.question.r label {
+		left: 0px;
+	}
+}
+
+select {
+	font-size: 17px;
+	padding-left: 0px;
+	padding-right: 0px;
+	border-radius: 0;
+	border: 0px;
+	height: 34px;
+	border-bottom: solid 1px #cccccc;
+	background-image: none;
+	margin-top: 8px;
+	margin-bottom: 12px;
+}
+
+select:focus {
+	border: 0px;
+	border-bottom: solid 1px #0073d2;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+textarea {
+	font-size: 16px;
+	padding: 10px;
+	border-radius: 0;
+	border: solid 1px #cccccc;
+	margin-top: 8px;
+	margin-bottom: 16px;
+}
+
+textarea.error {
+	padding: 9px !important;
+}
+
+textarea:focus {
+	padding: 10px;
+	border: solid 1px #0073d2;
+}

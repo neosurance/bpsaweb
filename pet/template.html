@@ -1,0 +1,861 @@
+T('home_prod',`
+<div class="home pet">
+	<div class="cover_pet">
+		<div class="splash_pet">
+			Net Pet️<br>
+			<span style="font-size:22px;font-weight:600">
+				Non solo RC.<br>
+				L'assicurazione per i tuoi amici a 4 zampe.
+			</span>
+		</div>
+	</div>
+	<div class="tag_pet">
+		<div style="font-weight:700;font-size:24px;margin-bottom:10px">Sicura. Veloce. Smart.</div>
+		Acquista in soli 4 click<br>
+		Paga con la tua carta, anche di un altra banca<br>
+		Disdici in qualunque momento senza alcun costo<br>
+		Assistenza online immediata <a href="tel:800180997" onclick="traceNum()">800 1809 97</a><br>
+	</div>
+	<div class="partners">
+		<div class="partner left">
+			<div style="padding-top:8px">
+				Compagnia di<br class="mobile">
+				assicurazione
+			</div>
+			<img src="res/logo_net.svg">
+		</div>
+		<div class="partner right">
+			<div>
+				In collaborazione<br class="mobile">
+				con l'Intermediario<br>
+				assicurativo
+			</div>
+			<img style="width:130px;opacity:0.8" src="[%= resPath %]logo-bpsa-g.svg">
+		</div>
+	</div>
+	[%= T('coupon_pet').render({applier:'draw'}) %]
+	<div class="continue desktop">
+		<button onclick="initBuy()">continua</button>
+	</div>
+	<div style="padding-top:30px" class="protections">
+		<h1>La migliore protezione per i tuoi amici a 4 zampe.</h1>
+		<div class="protection borded">
+			<img style="width:90px" src="res/ico_1.svg"><br>
+			<h1>Rimborso spese veterinarie<br>in caso di intervento</h1>
+			<b>Net Pet copre le spese veterinarie a seguito di un intervento chirurgico dovuto
+			a malattia o infortunio.</b> Copriamo le spese veterinarie, i medicinali, le cure,
+			le rette di degenza anche in Day Hospital fino a € 2000/anno.
+		</div>
+		<div class="protection borded">
+			<img style="width:90px" src="res/ico_2.svg"><br>
+			<h1>Rimborso spese<br>veterinarie</h1>
+			In caso di malattia o infortunio del tuo animale, anche in assenza di un intervento chirurgico,
+			<b>ti rimborsiamo le spese per esami, visite, trattamenti fisioterapici, e i ricoveri anche 
+			in Day Hospital</b> fino a € 500/anno.
+		</div>
+		<div class="protection borded">
+			<img style="width:80px" src="res/ico_3.svg"><br>
+			<h1>Rimborso spese<br>funerarie</h1>
+			Se malauguratamente il tuo animale venisse a mancare a causa di un infortunio o a causa
+			di una malattia indennizzabile, ti rimborsiamo le spese per disporre del corpo.
+		</div>
+		<div class="protection borded">
+			<img style="width:80px" src="res/ico_4.svg"><br>
+			<h1>Spese di ricerca in caso<br>di smarrimento</h1>
+			Quando il tuo animale viene dichiarato scomparso dalle autorità competenti, 
+			<b>Net Pet copre le spese ordinarie di ricerca per aiutarti a riaverlo con te al più presto</b>.
+		</div>
+		<div class="protection borded">
+			<img style="width:90px" src="res/ico_5.svg"><br>
+			<h1 style="padding-bottom:0">Responsabilità civile</h1>
+			<div style="font-size:12px;padding-bottom:10">Disponibile per <b>Net Pet GOLD</b></div>
+			Ti assicuriamo per le somme che devi pagare in quanto responsabile, <b>per i danni 
+			involontariamente causati a terzi dal tuo animale</b> anche nel caso tu lo abbia affidato
+			in custodia a persone non professioniste.
+		</div>
+		<div class="protection">
+			<img style="width:90px" src="res/ico_6.svg"><br>
+			<h1 style="padding-bottom:0">Tutela legale</h1>
+			<div style="font-size:12px;padding-bottom:10">Disponibile per <b>Net Pet GOLD</b></div>
+			Se il tuo animale dovesse arrecare danni a terze persone e <b>venissi coinvolto in un 
+			contenzioso giudiziale, Net Pet copre le spese dovute al tuo avvocato</b> per la gestione 
+			e la mediazione della controversia.
+		</div>
+	</div>
+	<div class="sinfo">
+		Messaggio pubblicitario: prima della sottoscrizione leggere il set informativo<br>
+		<a class="doc" target="_blank" href="[%= buyCtx.product.setInformativo %]">
+			<img src="[%= resPath %]pdf.svg"><br>
+			set informativo
+		</a>
+	</div>
+	<div style="padding-left:20px;padding-right:20px">
+		<div class="exclusion" id="exclusion">
+			<img src="res/chevron.svg" onclick="toggleExclusion()">
+			<div onclick="toggleExclusion()">Esclusioni</div>
+			<div class="body">
+				<b>L'Assicuratore non rimborsa le spese derivanti da:</b><br>
+				<br>
+				<b>1)</b> infortuni o malattie conseguenti all'impiego dell'animale per la caccia;<br>
+				<b>2)</b> dolo o colpa grave dell'Assicurato, dei Familiari, nonché delle persone a cui è stato affidato l'animale assicurato;<br>
+				<b>3)</b> uso professionale dell'animale;<br>
+				<b>4)</b> uso dell'animale in violazione della legislazione vigente (maltrattamento, spettacoli o manifestazioni vietate, combattimenti, ecc.);<br>
+				<b>5)</b> malformazioni o difetti fisici di carattere congenito o riferibili a fattori ereditari, nonché patologie pregresse anche recidivanti;<br>
+				<b>6)</b> controlli di routine e/o facoltativi e/o check-up;<br>
+				<b>7)</b> malattie evitabili con vaccini e/o profilassi preventivi;<br>
+				<b>8)</b> acquisto di vaccini, antiparassitari e medicinali, tranne quanto previsto per gli interventi chirurgici;<br>
+				<b>9)</b> malattie mentali e problemi comportamentali;<br>
+				<b>10)</b> infortuni accaduti durante la partecipazione a competizioni sportive;<br>
+				<b>11)</b> gravidanza e patologie connesse, parto spontaneo;<br>
+				<b>12)</b> sterilizzazione, castrazione terapeutica, preventiva, infertilità, sterilità e fecondazione artificiale;<br>
+				<b>13)</b> soppressione e cremazione per pericolosità;<br>
+				<b>14)</b> taglio coda, taglio orecchie, chirurgia estetica e plastica, oculistica;<br>
+				<b>15)</b> malattie dei denti e parodontopatie;<br>
+				<b>16)</b> spese di igiene dentaria;<br>
+				<b>17)</b> terapie dietetiche inclusi gli alimenti medicati, i ricostituenti e i sali minerali;<br>
+				<b>18)</b> infortuni verificatisi nei primi 7 giorni di decorrenza della polizza e malattie manifestatesi nei primi 15 giorni di decorrenza della polizza;<br>
+				<b>19)</b> cure relative a malattie croniche;<br>
+				<b>20)</b> Filaria/Leshmania;<br>
+				<b>21)</b> pandemia;<br>
+				<b>22)</b> danni derivanti da guerre, guerre civili, sommosse, rischi sociopolitici, terrorismo;<br>
+				<b>23)</b> danni derivanti da catastrofi naturali (terremoto, alluvione, inondazione, calamità naturali).<br>
+				<br>
+				<b>Esclusioni RC</b><br>
+				Sono esclusi i danni:<br>
+				<br>
+				<b>1)</b> alle cose che l'Assicurato e i suoi Familiari abbiano in consegna, custodia o detengano a qualsiasi titolo;<br>
+				<b>2)</b> derivanti dall'esercizio dell'attività venatoria;<br>
+				<b>3)</b> causati da animali non iscritti all'anagrafe di competenza;<br>
+				<b>4)</b> ad altri animali di proprietà dell'Assicurato o di suoi Familiari;<br>
+				<b>5)</b> conseguenti ad uso professionale dell'animale, fatto salvo l'uso per non vedenti;<br>
+				<b>6)</b> cagionati dagli animali in occasione di ricovero temporaneo presso cliniche, ambulatori veterinari, pensioni per animali.<br>
+				<br>
+				<b>Esclusioni tutela legale</b><br>
+				Spese non coperte dall'Assicurazione.<br>
+				Quando l'Assicurato è coinvolto in una vertenza, l'Assicuratore non copre le seguenti spese:<br>
+				<br>
+				<b>1)</b> compensi dell'avvocato determinati tramite patti quota lite;<br>
+				<b>2)</b> compensi dell'avvocato per la querela o la denuncia se a seguito di questa la controparte non è rinviata a giudizio in sede penale;<br>
+				<b>3)</b> compensi dell'avvocato domiciliatario se non indicato da ARAG;<br>
+				<b>4)</b> spese per l'indennità di trasferta;<br>
+				<b>5)</b> spese di esecuzione forzata oltre il secondo caso per Sinistro;<br>
+				<b>6)</b> spese dell'organismo di mediazione quando la mediazione non è obbligatoria;<br>
+				<b>7)</b> imposte, tasse e altri oneri fiscali diversi dalle spese di giustizia;<br>
+				<b>8)</b> multe, ammende, sanzioni pecuniarie in genere;<br>
+				<b>9)</b> spese liquidate a favore delle parti civili costituite contro l'Assicurato nei procedimenti penali;<br>
+				<b>10)</b> spese non concordate con ARAG;<br>
+				<b>11)</b> ogni duplicazione di onorari in caso di domiciliazione.<br>
+				<br>
+				<b>Sono, inoltre, esclusi i sinistri derivanti da:</b><br>
+				<br>
+				<b>1)</b> diritto di famiglia, successioni o donazioni;<br>
+				<b>2)</b> materia fiscale o amministrativa;<br>
+				<b>3)</b> fatti conseguenti a tumulti popolari, sommosse popolari, eventi bellici, atti di terrorismo, atti di vandalismo,<br>
+				<b>4)</b> terremoto, sciopero, serrate, detenzione od impiego di sostanze radioattive;<br>
+				<b>5)</b> fatti conseguenti ad eventi naturali per i quali viene riconosciuto lo stato di calamità naturale o lo stato di allarme;<br>
+				<b>6)</b> fatti dolosi dei soggetti assicurati;<br>
+				<b>7)</b> fatti non accidentali che causano inquinamento dell'ambiente;<br>
+				<b>8)</b> vertenze con Net Insurance S.p.A.;<br>
+				<b>9)</b> adesione ad azioni di classe (class action).<br>
+				<br>
+			</div>
+		</div>
+	</div>
+	<div class="easy">
+		<div class="img"><img style="height:50px" src="[%= resPath %]ico_easy.svg"></div>
+		<div class="text">
+			<b style="color:#0073d2;font-size:16px">Facile da gestire</b><br>
+			<b>Se dovesse accadere un infortunio al tuo animale puoi segnalarci
+			quello che è accaduto direttamente online.</b><br>
+			Siamo sempre pronti ad aiutarti a raccogliere tutta la documentazione
+			utile alla richiesta di indennizzo nel più breve tempo possibile.
+		</div>
+	</div>
+	<div class="continue desktop">
+		<button onclick="initBuy()">continua</button>
+	</div>
+</div>
+[%= T('header').render({nav:'Net Pet',navAction:null,navClass:null,navLogo:'goHome()'}) %]
+<div>[%= T('footer').render() %]</div>
+<div class="mobile panel_pet" id="panel_pet">
+	<div class="panel_btn">
+		<button onclick="initBuy()">continua</button>
+	</div>
+</div>
+[%= T('cookie').render() %]
+`)
+
+T('coupon_pet',`
+<div style="padding:30px;border:solid 4px #dfeaf4;font-size:24px">
+	<b>Gold o Silver, scegli il piano assicurativo più adatto al tuo pet</b>
+</div>
+<div class="coupon_pet" id="coupon_top">
+	<div style="padding:20px;padding-left:15px;padding-right:15px">
+		<div class="paws">
+			<div class="paws_labels">
+				<ul>
+					<li class="top">Rimborso spese veterinarie in caso di intervento chirurgico</li>
+					<li>Rimborso spese veterinarie</li>
+					<li>Rimborso spese funerarie</li>
+					<li>Spese di ricerca in caso di smarrimento</li>
+					<li>Responsabilità civile</li>
+					<li>Tutela legale</li>
+				</ul>
+				<div class="paw_price"></div>
+			</div>
+			<div class="paws_col">
+				GOLD
+				<div class="ims gold">
+					<span class="piu">LA PIÙ SCELTA</span>
+					<img class="top" src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+				</div>
+				<div class="paw_price">
+					€ <b>11</b>
+					<span>mese</span>
+				</div>
+			</div>
+			<div class="paws_col">
+				SILVER
+				<div class="ims">
+					<img class="top" src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img src="res/paw.svg"><br>
+					<img style="width:11px" src="res/no_paw.svg"><br>
+					<img style="width:11px" src="res/no_paw.svg"><br>
+				</div>
+				<div class="paw_price">
+					€ <b>7</b>
+					<span>mese</span>
+				</div>
+			</div>
+		</div>
+		<div>
+			<a class="btn" target="_blank" href="[%= buyCtx.product.max %]">garanzie e franchigie</a>
+		</div>
+	</div>
+</div>
+`)
+
+T('buy_prod_1',`
+<div class="home payment pet">
+	<div class="steps">
+		<div class="step current"><div>1</div></div>
+		<div class="sep"></div>
+		<div class="step"><div>2</div></div>
+		<div class="sep"></div>
+		<div class="step"><div>3</div></div>
+		<div class="sep"></div>
+		<div class="step"><div><img src="[%= resPath %]check_w.svg"></div></div>
+	</div>
+	<div class="cover_pet">
+		<div class="splash_pet">
+			Inserisci i dati del tuo amico a 4 zampe
+		</div>
+	</div>
+	<div class="sections">
+		<div class="section" id="who">
+			<img class="icon" src="res/ico_paw.svg">
+			<h2>Chi vuoi assicurare?</h2>
+			<div class="whos">
+				<div class="opt">
+					<img src="res/ico_dog.svg"><br>
+					Il mio Cane<br>
+					<input autocomplete="off" type="radio" onclick="adjWho()" name="who_opt" id="who_dog" [%= buyCtx.params.who == 'dog'?'checked':'' %]>
+				</div>
+				<div class="opt">
+					<img src="res/ico_cat.svg"><br>
+					Il mio Gatto<br>
+					<input autocomplete="off" type="radio" onclick="adjWho()" name="who_opt" id="who_cat" [%= buyCtx.params.who == 'cat'?'checked':'' %]>
+				</div>
+			</div>
+			<div class="petfield">
+				<img src="res/f_ico_paw.svg">
+				<div class="field">
+					<input onfocus="this.removeClass('error')" type="text" id="petName" placeholder="Nome del tuo [%= buyCtx.params.who == 'cat'?'gatto':'cane' %]" value="[%= encodeAttribute(buyCtx.params.petName) %]">
+					<label for="petName	">Il nome è obbligatorio</label>
+				</div>
+			</div>
+			<div class="petfield">
+				<img src="res/f_ico_cake.svg">
+				<div class="field">
+					<select onfocus="removeDateErr()" class="select empty" id="day" style="width:50px" onchange="adjSelect(this)">
+						<option value="">Giorno</option>'
+						[% for (var i = 1; i <= 31; i++) { var vi = (i>9)?''+i:'0'+i; %]<option value="[%= vi %]" [%= (vi==buyCtx.params.bDay)?'selected':''%]>[%= vi %]</option>'[% } %]
+					</select> /
+					<label for="day">Data di nascita non valida</label>
+					<select onfocus="removeDateErr()" class="select empty" id="month" style="width:50px" onchange="adjSelect(this)">
+						<option value="">Mese</option>'
+						[% for (var i = 1; i <= 12; i++) { var vi = (i>9)?''+i:'0'+i; %]<option value="[%= vi %]" [%= (vi==buyCtx.params.bMonth)?'selected':''%]>[%= vi %]</option>[% } %]
+					</select> /
+					<select onfocus="removeDateErr()" class="select empty" id="year" style="width:50px" onchange="adjSelect(this)">
+						<option value="">Anno</option>'
+						[% var my = (new Date().getFullYear()); for (var i = my-10; i <= my; i++) { %]<option value="[%= i %]" [%= (i==buyCtx.params.bYear)?'selected':''%]>[%= i %]</option>'[% } %]
+					</select>
+				</div>
+			</div>
+			<div class="fnote">
+				Puoi assicurare un cane o un gatto con un'età compresa tra i 6 mesi e i 10 anni.
+			</div>
+			<div class="petfield">
+				<img src="res/f_ico_chip.svg">
+				<div class="field">
+					<input onfocus="this.removeClass('error')" type="text" id="chip" placeholder="Numero microchip" maxlength="15" value="[%= encodeAttribute(buyCtx.params.chip) %]">
+					<label for="chip">Il numero microchip non valido</label>
+				</div>
+			</div>
+			<div class="fnote">
+				Il numero del microchip di 15 cifre lo puoi trovare nel libretto sanitario del tuo animale
+			</div>
+			<div class="petfield">
+				<img src="res/f_ico_book.svg">
+				<div class="book">
+					Libretto sanitario del mio cane o gatto regolarmente aggiornato
+				</div>
+			</div>
+			<div class="check1">
+				<input autocomplete="off" onfocus="this.removeClass('error')" type="checkbox" id="bookOk" [%= buyCtx.params.bookOk?'checked':'' %]>
+				<label style="margin-left:8px" for="bookOk">Ne sono in possesso</label>
+			</div>
+		</div>
+		<div class="section" id="profile" >
+			<img class="icon" src="res/ico_data.svg">
+			<h2>I miei dati</h2>
+			[% if(buyCtx.logged) { %]
+				<div class="field">
+					<input type="hidden" id="email" value="[%= encodeAttribute(appCtx.user.email) %]">
+					<b style="font-weight:500;color:#555555;font-size:18px">[%= encodeHTML(appCtx.user.email) %]</b>
+				</div>
+			[% } else { %]
+				<div class="field">
+					<input onfocus="this.removeClass('error')" type="text" id="email" placeholder="Email" value="[%= encodeAttribute(buyCtx.profile.email) %]">
+					<label for="email">La Email non è corretta</label>
+				</div>
+				<div class="field">
+					<input onfocus="this.removeClass('error')" type="text" id="email_2" placeholder="Conferma Email" value="[%= encodeAttribute(buyCtx.profile.email_2) %]">
+					<label for="email_2">La Conferma Email non è corretta</label>
+				</div>
+			[% } %]
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="firstname" placeholder="Nome" value="[%= encodeAttribute(buyCtx.profile.firstname) %]">
+				<label for="firstname">Il Nome è obbligatorio</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="lastname" placeholder="Cognome" value="[%= encodeAttribute(buyCtx.profile.lastname) %]">
+				<label for="lastname">Il Cognome è obbligatorio</label>
+			</div>
+			<div class="field">
+				<select onfocus="this.removeClass('error')" [%= (!buyCtx.profile.country?' class="empty"':'') %] id="country" onchange="adjCountry();adjSelect(this)">
+					<option value="">Nazionalità</option>
+					[% for (var cc of  country_list) { %]
+						<option value="[%= cc.code %]" [%= (buyCtx.profile.country == cc.code?' selected':'') %]>[%= encodeHTML(cc.label) %]</option>
+					[% } %]
+				</select>
+				<label for="country">La Nazionalità è obbligatoria</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="address" placeholder="Indirizzo" value="[%= encodeAttribute(buyCtx.profile.address) %]">
+				<label for="address">L'Indirizzo è obbligatorio</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="zipCode" placeholder="CAP" value="[%= encodeAttribute(buyCtx.profile.zipCode) %]">
+				<label for="zipCode">Il CAP è obbligatorio</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="city" placeholder="Città" value="[%= encodeAttribute(buyCtx.profile.city) %]">
+				<label for="city">La Città è obbligatoria</label>
+			</div>
+			[% var hc = (buyCtx.profile.country == 'IT')?'':'hidden'; %]
+			<div id="sp_field" class="field [%= hc %]">
+				<select onfocus="this.removeClass('error')" [%= (!buyCtx.profile.stateProvince||buyCtx.profile.stateProvince=='EE'?'class="empty"':'') %] id="stateProvince" onchange="adjSelect(this)">
+					<option value="">Provincia</option>
+					[% for (var pv of  provs) { %]
+						<option value="[%= pv.val %]" [%= (buyCtx.profile.stateProvince == pv.val?' selected':'') %]>[%= encodeHTML(pv.name) %] ([%= pv.val %])</option>
+					[% } %]
+				</select>
+				<label for="country">La Provincia è obbligatoria</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="fiscalCode" placeholder="Codice Fiscale" value="[%= encodeAttribute(buyCtx.profile.fiscalCode) %]">
+				<label for="fiscalCode">Il Codice fiscale non è corretto</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="mobile" placeholder="Numero cellulare (facoltativo)" value="[%= encodeAttribute(buyCtx.profile.mobile) %]">
+				<label for="mobile">Il Numero cellulare non è corretto</label>
+			</div>
+		</div>
+		<div style="color:#666666;font-size:12px;line-height:16px">
+			<br>
+			Ricorda che se hai sbagliato a valorizzare un dato, puoi:<br>
+			- prima dell'acquisto, tornare indietro e rettificarlo<br>
+			- dopo l'acquisto, richiedere la rettifica scrivendoci a <a href="mailto:	wecare@netinsurance.it">wecare@netinsurance.it</a><br>
+			<br>
+		</div>
+	</div>
+	[%= T('foot2').render() %]
+	[%= T('desktop_step').render({trk:true}) %]
+</div>
+[%= T('header').render({nav:'indietro',navAction:'backPrd()',navClass:'back',navLogo:null}) %]
+<div class="desktop">[%= T('footer').render() %]</div>
+[%= T('mobile_panel_step').render({trk:true}) %]
+`)
+
+T('buy_prod_2',`
+<div class="home payment">
+	<div class="steps">
+		<div class="step done" onclick="showStep(1)"><div>1</div></div>
+		<div class="sep done"></div>
+		<div class="step current"><div>2</div></div>
+		<div class="sep"></div>
+		<div class="step"><div>3</div></div>
+		<div class="sep"></div>
+		<div class="step"><div><img src="[%= resPath %]check_w.svg"></div></div>
+	</div>
+	<div class="cover_pet [%= buyCtx.params.who %]">
+		<div class="splash_pet">
+			Scegli sempre il meglio per il tuo [%= buyCtx.params.who=='dog'?'cane':'gatto' %]
+		</div>
+	</div>
+	<div class="sections">
+		<div style="padding-left:10px;padding-right:10px" class="section">
+			<img class="icon" src="res/ico_umbrella.svg">
+			<h2>Scegli la polizza</h2>
+			<div style="padding-top:30px" class="whos">
+				<div class="opt" [%= buyCtx.params.plan!='gold'?'style="color:#333333"':'' %]>
+					<img src="res/paw_[%= buyCtx.params.plan=='gold'?'on':'off' %].svg"><br>
+					Gold
+					<div class="paw_price">
+						€ <b>11</b>
+						<span>mese</span>
+					</div>
+					<input autocomplete="off" type="radio" onclick="adjPlan()" name="who_opt" id="plan_gold" [%= buyCtx.params.plan=='gold'?'checked':'' %]>
+				</div>
+				<div class="opt" style="border-left:solid 1px #cccccc[%= buyCtx.params.plan!='silver'?';color:#333333':'' %]">
+					<img src="res/paw_[%= buyCtx.params.plan=='silver'?'on':'off' %].svg"><br>
+					Silver
+					<div class="paw_price">
+						€ <b>7</b>
+						<span>mese</span>
+					</div>
+					<input autocomplete="off" type="radio" onclick="adjPlan()" name="who_opt" id="plan_silver" [%= buyCtx.params.plan=='silver'?'checked':'' %]>
+				</div>
+			</div>
+			<div style="padding-top:40px" class="paws chooser">
+				<div class="paws_labels">
+					<ul>
+						<li>Rimborso spese veterinarie in caso di intervento chirurgico</li>
+						<li>Rimborso spese veterinarie</li>
+						<li>Rimborso spese funerarie</li>
+						<li>Spese di ricerca in caso di smarrimento</li>
+						<li>Responsabilità civile</li>
+						<li>Tutela legale</li>
+					</ul>
+				</div>
+				<div class="paws_col [%= buyCtx.params.plan=='gold'?'on':'' %]">
+					GOLD
+					<div class="ims">
+						<span class="piu">LA PIÙ SCELTA</span>
+						[% if(buyCtx.params.plan=='gold') { %]
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+						[% }else{ %]
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+						[% } %]
+					</div>
+				</div>
+				<div class="paws_col [%= buyCtx.params.plan=='silver'?'on':'' %]">
+					SILVER
+					<div class="ims">
+						[% if(buyCtx.params.plan=='silver') { %]
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+							<img src="res/paw_blue.svg"><br>
+						[% }else{ %]
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+							<img src="res/paw_grey.svg"><br>
+						[% } %]
+						<img style="width:11px" src="res/x.svg"><br>
+						<img style="width:11px" src="res/x.svg"><br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<img class="icon" src="res/ico_date.svg">
+			<h2>Validità</h2>
+			[% 
+				var vs = moment(buyCtx.params.validityStart).tz('Europe/Rome');
+				var ve = moment(buyCtx.params.validityEnd).tz('Europe/Rome');
+			%]
+			<div class="dates">
+				<div class="date left">
+					<span><b>dal</b></span><br>
+					[%= vs.format('DD/MM/YYYY') %]
+					<div class="note">dalle ore 24:00</div>
+				</div>
+				<div class="date right">
+					<span><b>al</b></span><br>
+					[%= ve.format('DD/MM/YYYY') %]
+					<div class="note">alle ore 24:00</div>
+				</div>
+			</div>
+			<div style="padding-top:30px" class="nota2">
+				I termini di carenza prevedono che la copertura decorre dal 7° giorno gli infortuni e dal 15° giorno per la malattie.
+				La polizza rimarrà attiva finchè non sarà comunicata disdetta da una delle parti,
+				o in caso di non pagamento dei premi successivi e in caso di mancato addebito del rinnovo.
+			</div>
+			
+			<div class="nota"><b>La polizza si rinnoverà automaticamente ogni mese</b></div>
+			<div class="dates">
+				<div style="width:100%" class="date">
+					<span><b>data prossimo rinnovo</b></span><br>
+					[%= ve.format('DD/MM/YYYY') %]
+				</div>
+			</div>
+			<div class="nota2">
+				Potrai cancellare in qualunque momento il rinnovo mensile della polizza dal tuo profilo personale 
+				nell'area "Le mie polizze"
+			</div>
+			
+		</div>
+	</div>
+	[%= T('foot2').render() %]
+	[%= T('desktop_step').render({trk:true}) %]
+</div>
+[%= T('header').render({nav:'indietro',navAction:'showStep(1)',navClass:'back',navLogo:null}) %]
+<div class="desktop">[%= T('footer').render() %]</div>
+[%= T('mobile_panel_step').render({trk:true}) %]
+`)
+
+T('buy_prod_3',`
+<div class="home payment">
+	<div class="steps">
+		<div class="step done" onclick="showStep(1)"><div>1</div></div>
+		<div class="sep done"></div>
+		<div class="step done" onclick="showStep(2)"><div>2</div></div>
+		<div class="sep done"></div>
+		<div class="step current"><div>3</div></div>
+		<div class="sep"></div>
+		<div class="step"><div><img src="[%= resPath %]check_w.svg"></div></div>
+	</div>
+	<div class="cover_pet">
+		<div class="splash_pet">I tuoi dati di pagamento</div>
+	</div>
+	<h1>
+		<b>Ci siamo quasi,</b><br> inserisci i dati della carta di credito e verifica l'informativa precontrattuale della polizza.
+	</h1>
+	<div class="sections">
+		<div class="section" id="pay">
+			<img class="icon" src="res/ico_pay.svg">
+			<h2>Metodo di pagamento</h2>
+			<div class="stripe">
+				<div class="logo"><img src="[%= resPath %]stripe.svg"></div>
+				<div id="stripe"></div>
+				<div class="stripe-privacy"><a target="_blank" href="https://stripe.com/it-IT/privacy">Informativa Privacy del sistema di pagamento Stripe</a></div>
+			</div>
+		</div>
+		<div class="section" id="checks">
+			<img class="icon" src="res/ico_legal.svg">
+			<h2>Informativa precontrattuale</h2>
+			<h4>
+				Per poter proseguire, occorre leggere la seguente informativa precontrattuale e, quindi, spuntare le relative caselle.
+			</h4>
+			<h4 style="padding-bottom:20px">
+				Dichiaro di aver ricevuto la seguente documentazione:
+			</h4>
+			<div class="check">
+				<input autocomplete="off" onchange="adjButton()" onfocus="this.removeClass('error')" type="checkbox" id="allegati">
+				<label for="allegati">
+					Le informazioni di cui <a target="_blank" href="[%= buyCtx.product.allegati %]">all'allegato 3 e 4</a> rilasciati dal Distributore.
+				</label>
+			</div>
+			<div class="check">
+				<input autocomplete="off" onchange="adjButton()" onfocus="this.removeClass('error')" type="checkbox" id="contract">
+				<label for="contract">
+					Il <a target="_blank" href="[%= buyCtx.product.setInformativo %]">set informativo</a> della Compagnia assicurativa e 
+					la relativa informativa privacy.
+				</label>
+			</div>
+			<h4>
+				Ricorda che hai il diritto di richiedere la documentazione di legge in formato cartaceo 
+				scrivendoci a <a href="mailto:wecare@netinsurance.it">wecare@netinsurance.it</a>
+			</h4>
+		</div>
+	</div>
+	<div class="adq" id="adq">
+		Sei sicuro di non avere acquistato altre assicurazioni che coprono lo stesso rischio per gli stessi beneficiari?
+		<div class="dual">
+			<div>
+				SI<br>
+				<input onfocus="getById('adq_y').removeClass('error');getById('adq_n').removeClass('error')" type="radio" name="adq" id="adq_y" onchange="showAde()">
+			</div>
+			<div>
+				NO<br>
+				<input onfocus="getById('adq_y').removeClass('error');getById('adq_n').removeClass('error')" type="radio" name="adq" id="adq_n" onchange="showAde()">
+			</div>
+		</div>
+	</div>
+	<div class="ade hidden" id="ade">
+		<div id="ignore">
+			<div class="sad"><img src="res/sad.svg"></div>
+			<div class="bad">
+				La tua risposta non è coerente con le tue esigenze espresse. Hai comunque il diritto di concludere il contratto.
+			</div>
+		</div>
+		<div id="ade_ok" class="hidden">
+			<div class="atto">
+				La compagnia prende atto della volontà dell'assicurato di sottoscrivere la polizza proposta
+			</div>
+		</div>
+		<div id="voglio" class="voglio">
+			Voglio procedere comunque con la sottoscrizione della polizza.<br>
+			<input id="adq_f" type="checkbox" onchange="toggleAde(this)">
+		</div>
+		<div id="ade_ko">
+			<button onclick="backPrd()">indietro</button>
+		</div>
+	</div>
+	<div class="mobile clicking" id="clicking">
+		Cliccando su completa acquisto eseguirai il pagamento
+	</div>
+	[%= T('desktop_price').render() %]
+	[%= T('foot2').render() %]
+</div>
+[%= T('header').render({nav:'indietro',navAction:'showStep(2)',navClass:'back',navLogo:null}) %]
+<div class="desktop">[%= T('footer').render() %]</div>
+[%= T('mobile_panel').render() %]
+`)
+
+T('stripe',`
+[% for(var i = 0; stripeSources && i < stripeSources.length; i++) { %]
+	<div onclick="selectPaymentSrc('[%= stripeSources[i].id %]')" id="[%= stripeSources[i].id %]" class="stripe-row [% if(stripeSources[i].id == stripeDefaultSource) { %]selected[% } %]">
+		[% if(stripeSources[i].brand.toLowerCase().indexOf('visa') >=0) { %]
+			<img src="[%= resPath %]visa.svg">
+		[% } else if(stripeSources[i].brand.toLowerCase().indexOf('master') >=0) { %]
+			<img src="[%= resPath %]master.svg">
+		[% } else if(stripeSources[i].brand.toLowerCase().indexOf('american') >=0) { %]
+			<img src="[%= resPath %]amex.svg">
+		[% } else { %]
+			<img src="[%= resPath %]cc.svg">
+		[% } %]
+		<span>●●●● ●●●● ●●●●</span> [%= stripeSources[i].last4 %]
+	</div>
+[% } %]
+<div style="height:44px;">
+	<div id="addCard" onclick="addCard()" style="[% if(!stripeSources || stripeSources.length == 0) { %] display:none; [% } %]">Aggiungi metodo di pagamento</div>
+	<form action="/charge" method="post" id="payment-form" style="[% if(stripeSources && stripeSources.length > 0) { %] display:none [% } %]">
+		<div id="card-element"></div>
+		<div id="card-errors" role="alert"></div>
+	</form>
+</div>
+`)
+
+T('mobile_panel_step',`
+<div class="mobile panel_pet" id="panel_pet">
+	[%= buyCtx.step > 1?T('panel_price').render(ctx):'' %]
+	<div class="panel_btn">
+		<button onclick="showStep(buyCtx.step+1,[%= trk?'true':'false' %])">continua</button>
+	</div>
+</div>
+`)
+
+T('desktop_step',`
+<div class="desktop sections">
+	<div class="section_sep"></div>
+</div>
+<div class="desktop price_pet" id="price_pet">
+	[%= buyCtx.step > 1?T('desktop_price_price').render(ctx):'' %]
+	<div class="desktop_btn">
+		<button onclick="showStep(buyCtx.step+1,[%= trk?'true':'false' %])">continua</button>
+	</div>
+</div>
+`)
+
+T('mobile_panel',`
+<div class="mobile panel_pet" id="panel_pet">
+	[%= T('panel_price').render(ctx) %]
+	<div class="panel_btn">
+		<button id="buyButtonM" class="disabled">completa acquisto</button>
+	</div>
+</div>
+`)
+
+T('desktop_price',`
+<div class="desktop sections">
+	<div class="section_sep"></div>
+</div>
+<div class="desktop price_pet" id="price_pet">
+	<div style="padding-top:0px" class="clicking" id="clicking">
+		Cliccando su completa acquisto eseguirai il pagamento
+	</div>
+	[%= T('desktop_price_price').render(ctx) %]
+	<div class="desktop_btn">
+		<button id="buyButton" class="disabled">completa acquisto</button>
+	</div>
+</div>
+`)
+
+T('panel_price',`
+<div class="panel_price">
+	<div>Premio: <span id="priceM">€ [%= doPrice().toFixed(2) %]</span></div>
+</div>
+`)
+
+T('desktop_price_price',`
+<div class="desktop_price">
+	<div>Premio: <span>€ [%= doPrice().toFixed(2) %]</span></div>
+</div>
+`)
+
+T('congrats',`
+<div class="home congrats">
+	<div class="steps">
+		<div class="step done"><div>1</div></div>
+		<div class="sep done"></div>
+		<div class="step done"><div>2</div></div>
+		<div class="sep done"></div>
+		<div class="step done"><div>3</div></div>
+		<div class="sep done"></div>
+		<div class="step complete"><div><img src="[%= resPath %]check.svg"></div></div>
+	</div>
+	<div class=confirm>
+		<img class="smile" src="res/buy_ok.svg">
+		<h1>Acquisto completato con successo!</h1>
+		<p>
+			Grazie <b>[%= encodeHTML(buyCtx.profile.firstname) %]</b>, la polizza è stata attivata.<br>
+			Ti abbiamo inviato una email di riepilogo con le informazioni di dettaglio della polizza acquistata.
+		</p>
+		<img style="height:32px" class="mail" src="res/mail_b.svg">
+	</div>
+	<div class="validity">
+		<h1>
+			La polizza<br>
+			Net Pet [%= buyCtx.policy.parameters.plan=='gold'?'Gold':'Silver' %] è valida
+		</h1>
+		[%
+			var vs = moment(buyCtx.policy.validityStart).tz('Europe/Rome');
+			var ve = moment(buyCtx.policy.validityEnd).tz('Europe/Rome');
+			var mtd = moment().tz('Europe/Rome');
+		%]
+		<div>
+			[%= vs.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')?'da oggi':'dal giorno' %]<br>
+			<span>[%= vs.format('DD/MM/YYYY') %]</span>
+			<div class="note">dalle ore 24:00</div>
+		</div>
+		<div>
+			al giorno<br>
+			<span>[%= ve.format('DD/MM/YYYY') %]</span>
+			<div class="note">alle ore 24:00</div>
+		</div>
+		<div style="width:100%;padding-top:30px;font-size:15px">La polizza si rinnoverà automaticamente ogni mese</div>
+		<div style="width:100%">
+			data prossimo rinnovo<br>
+			<span>[%= ve.format('DD/MM/YYYY') %]</span>
+		</div>	
+	</div>
+	<div class="assistenza">
+		<h1>
+			Come posso denunciare un sinistro?<br>
+			<span>puoi farlo dall'area</span>
+		</h1>
+		<div class="tel">
+			<a href="../history"><b>Le mie polizze</b></a>
+		</div>
+		<h1>
+			<span>
+				Per tutte le garanzie relative a rimborso spese veterinarie e responsabilità civile puoi contattare:
+			</span>
+		</h1>
+		<h2 style="margin-bottom:20px">
+			<a style="color:#333333" href="mailto:claims@netinsurance.it">claims@netinsurance.it</a>
+		</h2>
+		<h1>
+			<span>o scrivere a:</span>
+		</h1>
+		<h2 style="margin-bottom:20px">
+			<b>Net Insurance S.p.A. c/o Casella Postale 106, 26100 Cremona - Italia</b>
+		</h2>
+		<h1>
+			<span>Per la tutela legale contatta:</span>
+		</h1>
+		<h2 style="margin-bottom:20px">
+			<a style="color:#333333" href="mailto:denunce@arag.it">denunce@arag.it</a>
+		</h2>
+	</div>
+	<div class="details">
+		<h1>Dettagli della polizza</h1>
+		<p>
+			Data di acquisto: <b>[%= moment(buyCtx.policy.validityStart).tz('Europe/Rome').format('DD/MM/YYYY') %]</b><br>
+			[% if(hasLength(buyCtx.policy.policyCode)) { %]
+				Numero polizza: <b>[%= buyCtx.policy.policyCode %]</b><br>
+			[% } %]
+			<br>
+			[%= buyCtx.policy.parameters.who=='dog'?'Cane':'Gatto' %] coperto dall'assicurazione:<br>
+			<b>[%= encodeHTML( buyCtx.policy.parameters.petName) %]</b><br>
+			<br>
+			Contraente:<br>
+			<b>[%= encodeHTML(buyCtx.policy.profile.firstname) %] [%= encodeHTML(buyCtx.policy.profile.lastname) %]</b><br>
+			<br>
+			Tipologia prodotto: <b>Net Pet [%= buyCtx.policy.parameters.plan=='gold'?'Gold':'Silver' %]</b><br>
+			Premio mensile: <b>€ [%= buyCtx.policy.premium %]</b><br>
+		</p>
+	</div>
+	<div class="docs">
+		<h1>Documentazione contrattuale</h1>
+		<a target="_blank" href="[%= buyCtx.product.allegati %]">
+			<img src="[%= resPath %]pdf.svg">Allegati 3 e 4<br>
+		</a>
+		<a target="_blank" href="[%= buyCtx.product.setInformativo %]">
+			<img src="[%= resPath %]pdf.svg">Set informativo<br>
+		</a>
+		[% if(buyCtx.policy.documents.NET_policy) { %]
+		<a target="_blank" href="[%= buyCtx.policy.documents.NET_policy.pdf %]">
+			<img src="[%= resPath %]pdf.svg">Certificato di polizza<br>
+		</a>
+		[% } else if(buyCtx.policy.documents.policy) { %]
+		<a target="_blank" href="[%= buyCtx.policy.documents.policy.pdf %]">
+			<img src="[%= resPath %]pdf.svg">Certificato di polizza<br>
+		</a>
+		[% } %]
+	</div>
+	<div style="text-align:left" class="remember">
+		In caso di reclamo puoi scrivere a:<br>
+		<b>Net Insurance S.p.A.<br>
+		C.A. Ufficio Reclami - Via Giuseppe Antonio Guattani, 4 - 00161 ROMA<br>
+		Fax: +39 06 89326570<br>
+		PEC: ufficio.reclami@pec.netinsurance.it</b><br>
+		<br>
+		<br>
+	</div>
+</div>
+[%= T('header').render({nav:'Net Pet',navAction:'goGroup()',navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+`)
+
+T('foot2',`
+<div class="mobile foot2">
+	<img style="margin-bottom:8px;height:15px;opacity:0.6" src="[%= resPath %]logo-bpsa-g.svg"><br>	
+	Banca Popolare Sant'Angelo Società cooperativa per azioni, con sede in Corso Vittorio Emanuele 10, 92027 - Licata (AG)<br>
+	Uffici Direttivi in Via Enrico Albanese 94, 90139 - Palermo (PA)<br>
+	Iscritta al Registro delle Imprese di Agrigento CF/Partita IVA 00089160840<br>
+	Iscrizione all'Albo delle Banche n. 1571, iscrizione REA n. AG 19267<br>
+	Telefono: 0922.860111 │ PEC: direzionegenerale@postacert.bancasantangelo.com │ Iscrizione RUI : D000109153
+</div>
+`)

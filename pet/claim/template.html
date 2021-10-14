@@ -1,0 +1,230 @@
+T('claim',`
+[% var policy = claimCtx.policy; %]
+<div class="home claim">
+	<div class="max800">
+		<div style="padding-top:30px;font-size:24px;font-weight:700">
+			Ci spiace [%= encodeHTML(policy.profile.firstname) %] per quello che è accaduto a [%= encodeHTML(policy.parameters.petName) %]
+		</div>
+		<div style="font-size:14px">
+			Noi ci siamo! Aiutaci a raccogliere tutte le informazioni utili per richiedere il tuo indennizzo.
+		</div>
+		<div class="splitbox">
+			<div class="det">
+				Polizza:<br>
+				<p style="margin-top:4px;font-weight:600;font-size:24px;color: #0073d2">Net Pet [%= policy.parameters.plan=='gold'?'Gold':'Silver' %]</p>
+				<br>
+				Numero polizza: <b>[%= policy.policyCode %]</b><br>
+				<br>
+				Contraente: <b>[%= encodeHTML(policy.profile.firstname) %] [%= encodeHTML(policy.profile.lastname) %]</b><br>
+				<br>
+				[%= policy.parameters.who=='dog'?'Cane':'Gatto' %] coperto dall'assicurazione:
+				<b>[%= encodeHTML(policy.parameters.petName) %]</b><br>
+			</div><div class="vld">
+				<p style="font-weight:700;margin-bottom:8px">Polizza valida</p>
+				dal<br>
+				[%
+					var vs = new moment(policy.validityStart).tz('Europe/Rome');
+					var ve = new moment(policy.validityEnd).tz('Europe/Rome');
+				%]
+				<p class="day">[%= vs.format('DD/MM/YYYY') %]</p>
+				<p class="time">dalle ore <b>24:00</b></p>
+				al<br>
+				<p class="day">[%= ve.format('DD/MM/YYYY') %]</p>
+				<p class="time">alle ore <b>24:00</b></p>
+			</div>
+		</div>
+		<div class="questions">
+			<div class="question l">
+				<span>1.</span> Scegli il tipo di richiesta?
+				<select style="background:#f0f0f0;padding-left:10px" id="type" onchange="adjClaimType()">
+					<option value="rimborso">Rimborso spese veterinarie</option>
+					[% if(policy.parameters.plan == 'gold') { %]
+						<option value="civile">Responsabilità civile</option>
+					[% } %]
+				</select>
+			</div>
+			<div class="question r">
+				<span>2.</span> Quando è avvenuto il sinistro?
+				<select onfocus="this.removeClass('error')" class="empty" id="when" onchange="adjSelect(this);storeClaimPayload()">
+					<option value="">Seleziona la data del sinistro</option>
+					[% for (var is = new moment(policy.validityStart).tz('Europe/Rome').add(1, 'days'); is.valueOf() < policy.validityEnd; is=is.add(1, 'days')) { %]
+						<option value="[%= is.format('DD/MM/YYYY') %]">[%= is.format('DD/MM/YYYY') %]</option>
+					[% } %]
+				</select>
+				<label style="top:73px" for="when">Questo campo è obbligatorio</label>
+				<select onfocus="this.removeClass('error')" class="empty" id="time" onchange="adjSelect(this);storeClaimPayload()">
+					<option value="">Seleziona l'ora del sinistro</option>
+					[% for (var i = 0; i < 24; i++) { %]
+						<option value="[%= i>9?i:'0'+i %]:00">[%= i>9?i:'0'+i %]:00</option>
+					[% } %]
+				</select>
+				<label style="top:128px" for="time">Questo campo è obbligatorio</label>
+			</div>
+			<div class="question l" id="q_where">
+				<span>3.</span> Dove?
+				<div style="position:relative">
+					<textarea onfocus="this.removeClass('error')" style="height:120px" id="where" placeholder="Inserisci l'indirizzo del luogo dove è avvenuto il sinistro" onblur="storeClaimPayload()"></textarea>
+					<label style="left:0px;top:130px" for="where">Questo campo è obbligatorio</label>
+				</div>
+			</div>
+			<div class="question r hidden" id="q_what">
+				<span>4.</span> Raccontaci cosa è successo
+				<div style="position:relative">
+					<textarea onfocus="this.removeClass('error')" style="height:120px" id="what" placeholder="Raccontaci nel dettaglio quello che è successo" onblur="storeClaimPayload()"></textarea>
+					<label style="left:0px;top:130px" for="what">Questo campo è obbligatorio</label>
+				</div>
+			</div>
+			<div class="question hidden" id="q_who">
+				<span>5.</span> Sono state coinvolte nell'incidente altre persone non presenti tra gli assicurati?
+				<div style="position:relative">
+					<textarea onfocus="this.removeClass('error')" style="height:120px" id="who" placeholder="Inserisci i dati anagrafici delle persone non presenti tra gli assicurati coinvolte nell'incidente" onblur="storeClaimPayload()"></textarea>
+					<label style="left:0px;top:130px" for="who">Questo campo è obbligatorio</label>
+				</div>
+			</div>
+			<div class="question">
+				<img style="height:18px;vertical-align:middle" src="clip.svg"> Allega documentazione
+				<div class="note">Inserisci la documentazione necessaria:</div>				
+			</div>
+
+			<div class="question hidden" id="q_vet">
+				<div class="directions">
+					Rapporto circostanziato a cura del veterinario, su carta intestata dello stesso, 
+					attestante le cause e le modalità del sinistro.
+				</div>
+				<div class="photos" id="vet">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="vet_f" name="vet_f" type="file" onchange="addPhoto(this,'vet')" accept=".jpg,.jpeg,.png">
+						<label for="vet_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+			</div>
+					
+			<div class="question hidden" id="q_rad">
+				<div class="directions">
+					Esami diagnostici, lastre, immagini, cartella clinica e tutto ciò che supporta la diagnosi, 
+					riportante il numero di microchip del tuo [%= policy.parameters.who=='dog'?'cane':'gatto' %].
+				</div>
+				<div class="photos" id="rad">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="rad_f" name="rad_f" type="file" onchange="addPhoto(this,'rad')" accept=".jpg,.jpeg,.png">
+						<label for="rad_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+			</div>
+
+			<div class="question hidden" id="q_ric">
+				<div class="directions">
+					Ricevute con valore fiscale debitamente pagate.
+				</div>
+				<div class="photos" id="ric">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="ric_f" name="ric_f" type="file" onchange="addPhoto(this,'ric')" accept=".jpg,.jpeg,.png">
+						<label for="ric_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+			</div>
+
+			<div class="question" id="q_ana">
+				<div class="directions">
+					Certificato di iscrizione all'anagrafe [%= policy.parameters.who=='dog'?'canina':'felina' %] e libretto sanitario del [%= policy.parameters.who=='dog'?'cane':'gatto' %].
+				</div>
+				<div class="photos" id="ana">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="ana_f" name="ana_f" type="file" onchange="addPhoto(this,'ana')" accept=".jpg,.jpeg,.png">
+						<label for="ana_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+			</div>
+			
+			<div class="question hidden" id="q_ext">
+				<div class="directions">
+					Ulteriori certificati medici o prescrizioni che attestino il decorso delle lesioni e 
+					della Malattia e/o qualsiasi documentazione o informazione utile per la gestione del sinistro.
+				</div>
+				<div class="photos" id="ext">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="ext_f" name="ext_f" type="file" onchange="addPhoto(this,'ext')" accept=".jpg,.jpeg,.png">
+						<label for="ext_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="question hidden" id="q_aut">
+				<div class="directions">
+					Eventuale verbale dell'autorità intervenuta
+				</div>
+				<div class="photos" id="aut">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="aut_f" name="aut_f" type="file" onchange="addPhoto(this,'aut')" accept=".jpg,.jpeg,.png">
+						<label for="aut_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+			</div>
+
+			<div class="question hidden" id="q_inf">
+				<div class="directions">
+					Qualsiasi altra documentazione veterinaria o informazione necessaria per la gestione del sinistro.
+				</div>
+				<div class="photos" id="inf">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="inf_f" name="inf_f" type="file" onchange="addPhoto(this,'inf')" accept=".jpg,.jpeg,.png">
+						<label for="inf_f">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div style="padding-bottom:180px">
+			<button style="width:100%;max-width:300px" onclick="sendClaim()">
+				[%= policy.claimTime?'aggiorna':'invia' %] documentazione
+			</button>
+		</div>
+	</div>
+</div>
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+T('photo',`
+	<div class="photo">
+		<img src="[%= imgData %]">
+		<div onclick="removePhoto(this)"><img src="remove.svg"></div>
+	</div>
+`)
+
+T('sent',`
+[% var policy = claimCtx.policy; %]
+<div class="home claim">
+	<div class=confirm>
+		<img style="height:50px" src="check.svg">
+		<h1>Documentazione<br class="mobile"> [%= policy.claimTime?'aggiornata':'inviata' %]</h1>
+		<img style="margin-top:0px;margin-bottom:30px;height:32px" class="mail" src="../res/mail_b.svg">
+		<p>
+			Riceverai una mail di conferma dell'invio della documentazione aggiornata con i riferimenti di contatto dell'assicurazione.
+		</p>
+		<div style="padding-top:60px;padding-bottom:180px">
+			<button style="width:100%;max-width:300px" onclick="goTo('history')">
+				Le mie polizze
+			</button>
+		</div>
+	</div>
+</div>	
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+

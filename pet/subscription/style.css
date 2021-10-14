@@ -1,0 +1,99 @@
+.max800 {
+	display: inline-block;
+	width: 100%;
+	max-width: 640px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.splitbox {
+	margin-top: 20px;
+	border-radius: 6px;
+	border: solid 1px #cccccc;
+	overflow: hidden;
+	font-size: 0;
+}
+
+.splitbox .det {
+	padding: 20px;
+	background-color: #f0f0f0;
+	border-right: solid 1px #cccccc;
+	min-height: 320px;
+	width: 60%;
+	text-align: left;
+	font-size: 14px;
+	line-height: 18px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.splitbox .vld {
+	display: inline-block;
+	font-size: 16px;
+	line-height: 24px;
+	width: 40%;
+	padding: 20px;
+}
+
+.vld .day {
+	font-size: 19px;
+	font-weight: 600;
+	color: #0073d2;
+}
+
+.vld .time {
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+.section {
+	border: solid 1px #cccccc;
+	position: relative;
+	margin-top: 60px;
+	padding: 20px;
+	padding-top: 40px;
+	display: inline-block;
+	width: 100%;
+}
+
+.section .icon {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	transform: translate(-30px, -30px);
+	top: 0px;
+	left: 50%;
+}
+
+
+.section .stripe {
+	background-color: unset;
+	border: 0;
+	padding: 0;
+	margin-top: 10px;
+	margin-bottom: 0;
+	max-width: 360px;
+}
+
+.section .stripe-row {
+	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+
+
+@media only screen and (max-width: 640px) {
+	.splitbox .det {
+		border: 0;
+		display: block;
+		width: auto;
+		min-height: unset;
+	}
+	.splitbox .vld {
+		display: block;
+		width: auto;
+		text-align: left;
+		background-color: #f0f0f0;
+	}
+}

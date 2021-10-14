@@ -1,0 +1,73 @@
+.assistenza.pet {
+	padding: 20px;
+	padding-top: 0px;
+	text-align: center;
+}
+
+.assistenza.pet .icon {
+	height: 76px;
+	margin: 20px;
+}
+
+.assistenza.pet h1 {
+	font-size: 20px;
+	color: #333333;
+	font-weight: 700;
+	margin: 0;
+	padding: 10px;
+}
+
+.assistenza.pet h1 span {
+	font-size: 15px;
+	color: #979797;
+	font-weight: 400;
+}
+
+.assistenza.pet .tel {
+	display: inline-block;
+	padding: 6px;
+	padding-left: 24px;
+	padding-right: 24px;
+	background-color: #0073d2;
+	border-radius: 4px;
+}
+
+.assistenza.pet .tel a {
+	font-size: 19px;
+	color: #ffffff;
+	font-weight: 400;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.assistenza.pet .tel  img {
+	height: 20px;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+.assistenza.pet .sep {
+	height: 1px;
+	background-color: #cccccc;
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.assistenza.pet h2 {
+	padding-top: 0px;
+	font-size: 14px;
+	line-height: 24px;
+	color: #333333;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+.assistenza.pet h2 b {
+	font-weight: 600;
+}
+
+button.subscription {
+	width: 100%;
+	max-width: 300px;
+	white-space: nowrap;
+}

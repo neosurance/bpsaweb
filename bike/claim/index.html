@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<script>
+let p_t_h = location.pathname.replace(/\/[\/]+/g,'/')
+if(location.pathname != p_t_h) location.assign(p_t_h + location.search)
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169403542-2"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-169403542-2');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-458901674"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'AW-458901674');
+</script>
+
+<link rel="icon" href="icon.png" type="image/png" />
+<title>Bpsa</title>
+
+<link rel="stylesheet" href="../../res/nimble.css" />
+<link rel="stylesheet" href="../../res/keyframes.css" />
+<link rel="stylesheet" href="style.css" />
+
+<script src="../../conf.js"></script>
+<script src="../../res/moment.js"></script>
+<script src="../../res/nimble.js"></script>
+<script src="script.js"></script>
+
+<script src="../../res/nimble.html"></script>
+<script src="template.html"></script>
+<script>
+	var resPath = '../../res/'
+	var basePath = '../../'
+	var navPath = 'claim'
+</script>
+
+<script>
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window, document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '227698518721023');
+	fbq('track', 'PageView');
+</script>
+
+</head>
+<body onload="init()">
+	<div id="inner"></div>
+	<div id="modal" class="hidden" onclick="event.stopPropagation()">
+		<div id="modal_meter"><div id="modal_content"></div></div>
+	</div>
+	<div id="spinner" onclick="event.stopPropagation()"><div></div></div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+.entra {
+	padding: 30px;
+	padding-top: 50px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #333333;
+	max-width: 720px;
+	display: inline-block;
+}
+
+.inno {
+	padding: 30px;
+	padding-top: 10px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333333;
+	max-width: 720px;
+	display: inline-block;
+}
+
+.partners {
+	font-size: 0px;
+	padding: 20px;
+	padding-top: 0px;
+	padding-bottom: 40px;
+}
+
+.partner {
+	vertical-align: top;
+	text-align: center;
+	width: 50%;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 300;
+	color: #747474;
+}
+
+.partner.left {
+	border-right: solid 1px #ededed;
+}
+
+.partner div {
+	height: 65px;
+}
+
+.partner img {
+	height: 30px;
+	width: 90px;
+}
+
+.prods {
+	display: flex;
+	justify-content: center;
+	padding-top: 30px;
+	padding-bottom: 140px;
+}
+
+.prod {
+	padding: 20px;
+	padding-top: 10px;
+}
+
+.prod img {
+	width: 240px;
+	height: 150px;
+}
+
+.prod.mid {
+	border-left: solid 1px #ededed;
+	border-right: solid 1px #ededed;
+}
+
+.prod h1 {
+	color: #0073d2;
+	font-size: 24px;
+	font-weight: 700;
+	padding-top: 20px;
+}
+
+.prod p {
+	padding-top: 10px;
+	font-size: 16px;
+	line-height: 22px;
+	display: inline-block;
+	width: 240px;
+	height: 220px;
+}
+
+button {
+	width: 220px;
+	height: 40px;
+	background-image: url(freccia.svg);
+	background-repeat: no-repeat;
+	background-position: 195px 10px;
+	background-size: 10px 20px;
+}
+
+@media only screen and (min-width: 640px) {
+	.partner div {
+		height: 45px;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.prods {
+		display: block;
+	}
+	.prod.mid {
+		border-left: 0;
+		border-right: 0;
+	}
+	.prod {
+		padding-bottom: 80px;
+	}
+}

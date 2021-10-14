@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title>Bpsa</title>
+
+<style>
+body {
+	background-color: #ffffff;
+}
+
+.err {
+	color: #ffffff;
+	background-color: #0073d2;
+	padding-top: 200px;
+	padding-bottom: 200px;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 80px;
+	text-align: center;
+}
+</style>
+
+<script>
+	function goGroup() {
+		var grp = sessionStorage.getItem('nimble.group')
+		document.location.assign((grp) ? '/' + grp + '/' : '/')
+	}
+</script>
+</head>
+<body onclick="goGroup()" id="inner"></body>
+<script>
+	if (document.location.href.indexOf('nsr_action') < 0) {
+		document.getElementById('inner').className = 'err'
+		document.getElementById('inner').innerHTML = 'Oops 404!'
+	}
+</script>
+</html>

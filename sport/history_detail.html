@@ -1,0 +1,97 @@
+T('sport_detail',`
+[%	
+	var showHow = false;
+	var policyOn = historyCtx.request_time < policy.validityEnd;
+	if(historyCtx.request_time > policy.validityStart && historyCtx.request_time < policy.claimEnd) 
+		showHow = true
+%]
+<div class="policy [%= !policyOn?'expired':'' %]">
+	<div class="policy_container">
+		<div class="status">[%= policyOn?'attiva':'scaduta' %]</div>
+		<br>
+		<h1>[%= encodeHTML(product.name) %]</h1>
+		<div class="grey val">
+			<h1>Polizza valida</h1>
+			<div>
+				dal giorno<br>
+				<span>[%= moment(policy.validityStart).tz('Europe/Rome').format('DD/MM/YYYY') %]</span>
+			</div>
+			<div>
+				al giorno<br>
+				<span>[%= moment(policy.validityEnd).tz('Europe/Rome').format('DD/MM/YYYY') %]</span>
+			</div>
+			<h1 class="det">Dettagli della polizza</h1>
+			<div>
+				Data di acquisto: <b>[%= moment(policy.validityStart).tz('Europe/Rome').format('DD/MM/YYYY') %]</b><br>
+				Numero polizza: <b>[%= policy.policyCode %]</b><br>
+				[% if(policy.parameters.who == 'others') { %]
+					Contraente: <b>[%= encodeHTML(policy.profile.firstname + ' ' + policy.profile.lastname) %]</b><br>
+				[% } %]	
+				Persone coperte dall'assicurazione:<br>
+				[% if(policy.parameters.who != 'others') { %]
+					<b>[%= encodeHTML(policy.profile.firstname + ' ' + policy.profile.lastname) %]</b><br>
+				[% } %]	
+				[% if(policy.parameters.who != 'me') { %]
+					[% for(var j=0; j < policy.parameters.kids.length; j++) { var kid = policy.parameters.kids[j]; %]
+						<b>[%= encodeHTML(kid.firstname) %] [%= encodeHTML(kid.lastname) %]</b><br> 
+					[% } %]
+				[% } %]
+				Premio: <b>€ [%= sPrice(policy.premium) %]</b><br>
+			</div>
+		</div>
+		<div class="pdf">
+			<a target="_blank" href="[%= product.allegati %]">
+				<img src="[%= resPath %]pdf.svg">
+				<label>Allegati 3 e 4</label>
+			</a><br>
+			<a target="_blank" href="[%= product.setInformativo %]">
+				<img src="[%= resPath %]pdf.svg">
+				<label>Set informativo</label>
+			</a><br>
+			[% if(policy.documents.NET_policy) { %]
+				<a target="_blank" href="[%= policy.documents.NET_policy.pdf %]">
+					<img src="[%= resPath %]pdf.svg">
+					<label>Certificato di polizza</label>
+				</a><br>
+			[% } else if(policy.documents.policy) { %]
+				<a target="_blank" href="[%= policy.documents.policy.pdf %]">
+					<img src="[%= resPath %]pdf.svg">
+					<label>Certificato di polizza</label>
+				</a><br>
+			[% } %]
+		</div>
+	</div>
+	[% if(showHow) { %]
+		<div class="assistenza sport">
+			<h1>
+				Denuncia un sinistro<br>
+				[% if(policy.claimTime) { %]
+					<span>
+						Hai effettuato la segnalazione di un infortunio il
+						<b>[%= moment(policy.claimTime).tz('Europe/Rome').format('DD/MM/YYYY') %]</b>
+					</span>
+				[% } %]
+			</h1>
+			<button style="width:100%;max-width:300px" onclick="goTo('sport/claim/?code=[%= policy.proposalCode%]')">
+				[%= policy.claimTime?'aggiorna pratica':'ho avuto un infortunio' %]
+			</button>
+			<h1>
+				<span>puoi sempre inviare una mail a:</span>
+			</h1>	
+			<h2>
+				<a style="color:#333333" href="mailto:claims@netinsurance.it">claims@netinsurance.it</a>
+			</h2>
+			<h1>
+				<span>o scrivere a:</span>
+			</h1>	
+			<h2>
+				<b>Net Insurance S.p.A. c/o Casella Postale 106, 26100 Cremona - Italia</b>
+			</h2>
+		</div>
+	[% } else { %]
+	<br>
+	[% } %]
+</div>
+`)
+
+

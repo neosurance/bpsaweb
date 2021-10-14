@@ -1,0 +1,851 @@
+T('home_prod',`
+<div class="home smrt">
+	<div class="cover_smrt">
+		<div class="splash_smrt">
+			Net Sport<br>
+			<span style="font-size:22px;font-weight:600">
+				L'assicurazione istantanea<br> che ogni sportivo aspettava
+				</span>
+		</div>
+	</div>
+	<div class="partners">
+		<div class="partner left">
+			<div style="padding-top:8px">
+				Compagnia di<br class="mobile">
+				assicurazione
+			</div>
+			<img src="res/logo_net.svg">
+		</div>
+		<div class="partner right">
+			<div>
+				In collaborazione<br class="mobile">
+				con l'Intermediario<br>
+				assicurativo
+			</div>
+			<img style="width:130px;opacity:0.8" src="[%= resPath %]logo-bpsa-g.svg">
+		</div>
+	</div>
+	<div class="tag_smrt">
+		<div style="font-weight:700;font-size:24px;margin-bottom:10px">Sicura. Veloce. Smart.</div>
+		<b style="color:#0073d2">Net Sport</b> 
+		è la protezione che attivi quando serve e ti protegge dagli infortuni durante le attività outdoor e indoor, 
+		gli allenamenti, gli eventi sportivi amatoriali, <b>ma quando è attiva ti copre anche quando non stai 
+		facendo sport!</b>
+	</div>
+	[%= T('coupon_smrt').render({applier:'draw'}) %]
+	<div style="padding-top:30px" class="protections">
+		<h1>La protezione che ti accompagna durante tutto il tuo percorso di preparazione atletica.</h1>
+		<div class="proflex">
+			<div class="protection">
+				<img src="res/ico1.svg"><br>
+				<h1>Protezioni<br>infortuni</h1>
+				Quando ti alleni dai sempre il massimo, può succedere talvolta che qualcosa non vada per il meglio, 
+				<b style="color:#0073d2">Net Sport</b> copre gli infortuni più frequenti nella pratica di attività 
+				fisica, durante gli allenamenti e le partite non agonistiche per sentirti sempre sicuro e protetto.
+			</div>
+			<div class="protection borded">
+				<img src="res/ico2.svg"><br>
+				<h1>Paghi solo quello<br>che usi</h1>
+				La attivi quando vuoi e solo per il periodo che ti serve. Puoi scegliere <b>1 giorno</b>,
+				<b>1 settimana</b>, <b>1 mese</b> o se preferisci puoi risparmiare ancora di più attivandola
+				per <b>1 anno</b> intero. <b>In caso di infortunio non ti chiederemo nessuna franchigia.</b>
+			</div>
+			<div class="protection">
+				<img src="res/ico3.svg"><br>
+				<h1>Protetto anche in viaggio<br>per il mondo</h1>
+				Sempre con te ovunque ti trovi, valida anche quando viaggi all'estero*.<br>
+				<span style="color:#979797;font-size:13px"><br>*consulta il set informativo per maggiori informazioni.</span>
+			</div>
+		</div>
+	</div>
+	<div class="sinfo">
+		Messaggio pubblicitario: prima della sottoscrizione leggere il set informativo<br>
+		<a class="doc" target="_blank" href="[%= buyCtx.product.setInformativo %]">
+			<img src="[%= resPath %]pdf.svg"><br>
+			set informativo
+		</a>
+	</div>
+	<div style="padding-left:20px;padding-right:20px">
+		<div class="exclusion" id="exclusion">
+			<img src="res/chevron.svg" onclick="toggleExclusion()">
+			<div onclick="toggleExclusion()">Esclusioni</div>
+			<div class="body">
+				<b>Sono esclusi dall'Assicurazione gli Infortuni causati:</b><br>
+				<br>
+				a) dalla guida o uso anche come passeggero di mezzi di locomozione aerei, compresi deltaplani e ultraleggeri;<br>
+				<br>
+				b) dalla pratica di sport aerei in genere quali a puro titolo esemplificativo: deltaplani, velivoli ultraleggeri, paracadutismo, parapendio;<br>
+				<br>
+				c) dalla guida di qualsiasi veicolo o natante a motore, se l'Assicurato è privo dell'abilitazione prescritta dalle disposizioni vigenti, salvo
+				il caso di guida con patente scaduta, ma a condizione che l'Assicurato abbia, al momento del Sinistro, i requisiti per il rinnovo;<br>
+				<br>
+				d) dalla guida e uso di mezzi subacquei;<br>
+				<br>
+				e) dalla guida di veicoli in conseguenza di crisi epilettiche dell'Assicurato;<br>
+				<br>
+				f) dalla pratica di sport estremi e pericolosi in genere quali a puro titolo esemplificativo: pugilato, atletica pesante, sollevamento pesi,
+				arti marziali, lotta nelle sue varie forme, alpinismo con scalata di difficoltà superiore al 3° grado della scala UIAA, free climbing, skeleton,
+				velocità pura su sci, sci alpinismo, sci estremo, football americano, rugby, hockey, discese su rapide con qualsiasi mezzo, regate o traversate
+				in alto mare effettuate solitariamente, bungee jumping, paracadutismo, salti dal trampolino con sci od idrosci, kitesurf nonché sci acrobatico,
+				immersioni con autorespiratore, speleologia; guidoslitta (bob)<br>
+				<br>
+				g) dalla pratica di qualsiasi sport esercitato professionalmente o che comunque
+				comporti remunerazione sia diretta che indiretta;<br>
+				<br>
+				h) dalla partecipazione a corse e gare (e relative prove anche a scopo amatoriale ed allenamenti) comportanti l'uso di veicoli o natanti a motore;<br>
+				<br>
+				i) dall'uso e guida di veicoli a motore all'interno di circuiti adibiti agli sport motoristici;<br>
+				<br>
+				j) dalla partecipazione a competizioni (e relative prove ed allenamenti) di baseball, calcio, calcetto, calciotto e simili, pallavolo, beach-volley, 
+				pallacanestro, pallamano, sci e snowboard non estremi, ciclismo, sport equestri, pattinaggio, se organizzate da Federazioni sportive o Enti Sportivi
+				riconosciuti dal Comitato Olimpico Nazionale Italiano (C.O.N.I.). Resta comunque inclusa in garanzia la partecipazione a gare / competizioni, compresi 
+				i relativi allenamenti:<br>
+				- a carattere amatoriale;<br>
+				- organizzate da Enti Sportivi riconosciuti dal Comitato Olimpico Nazionale Italiano (C.O.N.I.) purché appartenenti ad Associazioni Sportive 
+				Dilettantistiche (Onlus, ex legge 398/91);<br>
+				<br>
+				k) da ubriachezza dell'Assicurato, da abuso di psicofarmaci, dall'uso di stupefacenti o allucinogeni;<br>
+				<br>
+				l) da tumulti popolari, atti violenti od aggressioni, cui l'Assicurato abbia preso parte attiva;<br>
+				<br>
+				m) da atti dolosi compiuti o tentati dall'Assicurato;<br>
+				<br>
+				n) da azioni delittuose dell'Assicurato, suicidio ed autolesionismo;<br>
+				<br>
+				o) da movimenti tellurici, inondazioni, alluvioni ed eruzioni vulcaniche;<br>
+				<br>
+				p) da guerra, insurrezioni, o atti terroristici comprese le conseguenze dirette od indirette di contaminazioni chimiche e biologiche;<br>
+				<br>
+				q) da trasformazioni o assestamenti energetici dell'atomo, naturali o provocati, e da accelerazioni di particelle atomiche (fissione e fusione nucleare,
+				isotopi radioattivi, macchine acceleratrici, raggi X, etc.);<br>
+				<br>
+				<b>Sono inoltre esclusi:</b><br>
+				<br>
+				r) gli Infortuni le cui conseguenze si concretizzino nella sindrome da immunodeficienza acquisita (A.I.D.S);<br>
+				<br>
+				s) gli infarti e ictus.<br>
+				<br>
+			</div>
+		</div>
+	</div>
+	<div class="easy">
+		<div class="img"><img style="height:50px" src="[%= resPath %]ico_easy.svg"></div>
+		<div class="text">
+			<b style="color:#0073d2;font-size:16px">Facile da gestire</b><br>
+			<b>Se dovesse accaderti un infortunio puoi segnalarci quello che è 
+			accaduto direttamente online.</b><br>
+			Siamo sempre pronti ad aiutarti a raccogliere tutta la documentazione 
+			utile alla richiesta di indennizzo nel più breve tempo possibile.
+		</div>
+	</div>
+	<div class="continue desktop">
+		<button onclick="initBuy()">continua</button>
+	</div>
+</div>
+[%= T('header').render({nav:'Net Sport',navAction:null,navClass:null,navLogo:'goHome()'}) %]
+<div>[%= T('footer').render() %]</div>
+<div class="mobile panel_smrt" id="panel_smrt">
+	<div class="panel_btn">
+		<button onclick="initBuy()">continua</button>
+	</div>
+</div>
+[%= T('cookie').render() %]
+`)
+
+T('coupon_smrt',`
+<div style="padding:30px;border:solid 4px #dfeaf4;font-size:24px">
+	<b>Scegli tu la durata più adatta ai tuoi bisogni</b>
+</div>
+<div class="coupon_smrt" id="coupon_top">
+	<div style="padding:20px">
+		<div class="prices">
+			<div class="oneday">
+				<div class="cal">
+					1
+					<div style="font-size:15px;line-height:15px;font-weight:400">giorno</div>
+				</div><br>
+				€ 3,50
+				<div style="font-size:13px;font-weight:400">max 3 giorni</div>
+			</div><br class="mobile">
+			<div class="mores">
+				<span style="font-size:16px"><b>Risparmia</b> scegliendo tra:<br></span>
+				<div class="moreday">
+					7<div>giorni</div><span>€ 15</span>
+				</div>
+				<div style="margin-left:10px" class="moreday">
+					30<div>giorni</div><span>€ 30</span>
+				</div>
+				<div style="margin-left:10px" class="moreday">
+					1<div>anno</div><span>€ 120</span>
+				</div>
+				<br>
+			</div>
+		</div>
+		<div>
+			<a class="btn" target="_blank" href="[%= buyCtx.product.max %]">scopri tutti i massimali</a>
+		</div>
+	</div>
+</div>
+`)
+
+T('buy_prod_1',`
+<div class="home payment smrt">
+	<div class="steps">
+		<div class="step current"><div>1</div></div>
+		<div class="sep"></div>
+		<div class="step"><div>2</div></div>
+		<div class="sep"></div>
+		<div class="step"><div>3</div></div>
+		<div class="sep"></div>
+		<div class="step"><div><img src="[%= resPath %]check_w.svg"></div></div>
+	</div>
+	<div class="cover_smrt">
+		<div class="splash_smrt">Inserisci i dati delle persone che vuoi assicurare</div>
+	</div>
+	<h1>
+		<b>Puoi assicurarti o assicurare altre persone</b>,<br>
+		ricordati che devi essere maggiorenne per farlo.
+	</h1>
+	<div class="sections">
+		<div style="padding-top:50px" class="section" id="who">
+			<img class="icon" src="res/Ico_who.svg">
+			<div class="whos">
+				<div class="opt">
+					<img src="res/who_me.svg"><br>
+					solo io<br>&nbsp;<br><br>
+					<input type="radio" onclick="adjWho()" name="who_opt" id="who_me" [%= buyCtx.params.who == 'me'?'checked':'' %]>
+				</div>
+				<div class="opt">
+					<img src="res/who_plus.svg"><br>
+					Io e altre<br>persone<br><br>
+					<input type="radio" onclick="adjWho()" name="who_opt" id="who_plus" [%= buyCtx.params.who == 'plus'?'checked':'' %]>
+				</div>
+				<div class="opt">
+					<img src="res/who_others.svg"><br>
+					Solo altre<br>persone<br><br>
+					<input type="radio" onclick="adjWho()" name="who_opt" id="who_others" [%= buyCtx.params.who == 'others'?'checked':'' %]>
+				</div>
+			</div>
+		</div>
+		
+		<div class="section [%= buyCtx.params.who=='me'?'me':'' %]" id="profile" >
+			<img class="icon" src="res/ico_data.svg">
+			<h2>[% if(buyCtx.params.who=='plus') { %]<span style="color:#0073d2">1.</span> Assicurato[% }else{ %]I miei dati[% } %]</h2>
+			<div class="nota">
+				[% if(buyCtx.params.who=='me' || buyCtx.params.who=='plus') { %]
+					Contraente e assicurato
+				[% } else { %]
+					Contraente, non assicurato
+				[% } %]
+			</div>
+			[% if(buyCtx.logged) { %]
+				<div class="field">
+					<input type="hidden" id="email" value="[%= encodeAttribute(appCtx.user.email) %]">
+					<b style="font-weight:500;color:#555555;font-size:18px">[%= encodeHTML(appCtx.user.email) %]</b>
+				</div>
+			[% } else { %]
+				<div class="field">
+					<input onfocus="this.removeClass('error')" type="text" id="email" placeholder="Email" value="[%= encodeAttribute(buyCtx.profile.email) %]">
+					<label for="email">La Email non è corretta</label>
+				</div>
+				<div class="field">
+					<input onfocus="this.removeClass('error')" type="text" id="email_2" placeholder="Conferma Email" value="[%= encodeAttribute(buyCtx.profile.email_2) %]">
+					<label for="email_2">La Conferma Email non è corretta</label>
+				</div>
+			[% } %]
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="firstname" placeholder="Nome" value="[%= encodeAttribute(buyCtx.profile.firstname) %]">
+				<label for="firstname">Il Nome è obbligatorio</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="lastname" placeholder="Cognome" value="[%= encodeAttribute(buyCtx.profile.lastname) %]">
+				<label for="lastname">Il Cognome è obbligatorio</label>
+			</div>
+			<div class="field">
+				<select onfocus="this.removeClass('error')" [%= (!buyCtx.profile.country?' class="empty"':'') %] id="country" onchange="adjCountry();adjSelect(this)">
+					<option value="">Nazionalità</option>
+					[% for (var cc of  country_list) { %]
+						<option value="[%= cc.code %]" [%= (buyCtx.profile.country == cc.code?' selected':'') %]>[%= encodeHTML(cc.label) %]</option>
+					[% } %]
+				</select>
+				<label for="country">La Nazionalità è obbligatoria</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="address" placeholder="Indirizzo" value="[%= encodeAttribute(buyCtx.profile.address) %]">
+				<label for="address">L'Indirizzo è obbligatorio</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="zipCode" placeholder="CAP" value="[%= encodeAttribute(buyCtx.profile.zipCode) %]">
+				<label for="zipCode">Il CAP è obbligatorio</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="city" placeholder="Città" value="[%= encodeAttribute(buyCtx.profile.city) %]">
+				<label for="city">La Città è obbligatoria</label>
+			</div>
+			[% var hc = (buyCtx.profile.country == 'IT')?'':'hidden'; %]
+			<div id="sp_field" class="field [%= hc %]">
+				<select onfocus="this.removeClass('error')" [%= (!buyCtx.profile.stateProvince||buyCtx.profile.stateProvince=='EE'?'class="empty"':'') %] id="stateProvince" onchange="adjSelect(this)">
+					<option value="">Provincia</option>
+					[% for (var pv of  provs) { %]
+						<option value="[%= pv.val %]" [%= (buyCtx.profile.stateProvince == pv.val?' selected':'') %]>[%= encodeHTML(pv.name) %] ([%= pv.val %])</option>
+					[% } %]
+				</select>
+				<label for="stateProvince">La Provincia è obbligatoria</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="fiscalCode" placeholder="Codice Fiscale" value="[%= encodeAttribute(buyCtx.profile.fiscalCode) %]">
+				<label for="fiscalCode">Il Codice fiscale non è corretto</label>
+			</div>
+			<div class="field">
+				<input onfocus="this.removeClass('error')" type="text" id="mobile" placeholder="Numero cellulare (facoltativo)" value="[%= encodeAttribute(buyCtx.profile.mobile) %]">
+				<label for="mobile">Il Numero cellulare non è corretto</label>
+			</div>
+		</div>
+		[% if(buyCtx.params.who!='me') { %]
+			[% for(var i = 0; i < buyCtx.params.kids.length ; i++) { %]
+				[%= T('kid').render({ idx:i, kid:buyCtx.params.kids[i] }) %]
+			[% } %]
+			[% var kl = (buyCtx.params.who == 'others')?5:4; %]
+			[% if(buyCtx.params.kids.length < kl) { %]
+			<div style="padding-bottom:10px" class="continue">
+				<button style="margin-top:10px" class="hollow" onclick="addKid()">aggiungi assicurato</button>
+			</div>
+			[% } %]
+		[% } %]
+		<div style="color:#666666;font-size:12px;line-height:16px">
+			<br>
+			Ricorda che se hai sbagliato a valorizzare un dato, puoi:<br>
+			- prima dell'acquisto, tornare indietro e rettificarlo<br>
+			- dopo l'acquisto, richiedere la rettifica scrivendoci a <a href="mailto:	wecare@netinsurance.it">wecare@netinsurance.it</a><br>
+			<br>
+		</div>
+	</div>
+	[%= T('foot2').render() %]
+	[%= T('desktop_step').render({trk:true}) %]
+</div>
+[%= T('header').render({nav:'indietro',navAction:'backPrd()',navClass:'back',navLogo:null}) %]
+<div class="desktop">[%= T('footer').render() %]</div>
+[%= T('mobile_panel_step').render({trk:true}) %]
+`)
+
+T('kid',`
+<div class="section" id="kid_[%= idx %]">
+	[% if(idx > 0 ) { %]<div style="top:20px;right:20px" class="modal_close" onclick="removeKid([%= idx %])"><img src="res/x.svg"></div>[% } %]
+	<img class="icon" src="res/ico_kid.svg">
+	<h2><span style="color:#0073d2">[%= (buyCtx.params.who=='plus')?idx+2:idx+1 %].</span> Assicurato</h2>
+	<div class="nota">L'assicurato può essere minorenne</div>
+	<div class="field">
+		<input onfocus="this.removeClass('error')" type="text" id="firstname_[%= idx %]" placeholder="Nome" value="[%= encodeAttribute(kid.firstname) %]">
+		<label for="firstname_[%= idx %]">Il Nome è obbligatorio</label>
+	</div>
+	<div class="field">
+		<input onfocus="this.removeClass('error')" type="text" id="lastname_[%= idx %]" placeholder="Cognome" value="[%= encodeAttribute(kid.lastname) %]">
+		<label for="lastname_[%= idx %]">Il Cognome è obbligatorio</label>
+	</div>
+	<div class="field">
+		<select onfocus="this.removeClass('error')" [%= (!buyCtx.profile.country?' class="empty"':'') %] id="country_[%= idx %]" onchange="adjCountry('_[%= idx %]');adjSelect(this)">
+			<option value="">Nazionalità</option>
+			[% for (var cc of  country_list) { %]
+				<option value="[%= cc.code %]" [%= (kid.country == cc.code?' selected':'') %]>[%= encodeHTML(cc.label) %]</option>
+			[% } %]
+		</select>
+		<label for="country_[%= idx %]">La Nazionalità è obbligatoria</label>
+	</div>
+	[% var hc = (kid.country == 'IT')?'':'hidden'; %]
+	<div id="fc_field_[%= idx %]" class="field [%= hc %]">
+		<input onfocus="this.removeClass('error')" type="text" id="fiscalCode_[%= idx %]" placeholder="Codice Fiscale" value="[%= encodeAttribute(kid.fiscalCode) %]">
+		<label for="lastname_[%= idx %]">Il Codice fiscale non è corretto</label>
+	</div>
+</div>
+`)
+
+T('buy_prod_2',`
+<div class="home payment smrt">
+	<div class="steps">
+		<div class="step done" onclick="showStep(1)"><div>1</div></div>
+		<div class="sep done"></div>
+		<div class="step current"><div>2</div></div>
+		<div class="sep"></div>
+		<div class="step"><div>3</div></div>
+		<div class="sep"></div>
+		<div class="step"><div><img src="[%= resPath %]check_w.svg"></div></div>
+	</div>
+	<div class="cover_smrt">
+		<div class="splash_smrt">Scegli la durata della polizza</div>
+	</div>
+	<h1>
+		Puoi assicurare anche solo un giorno di attività, <b>più tempo assicuri più risparmi!</b>
+	</h1>
+	<div style="margin-top:20px;font-weight:300;font-size:20px;color:#333333">Persone assicurate: <b style="color:#0073d2">
+		[% if(buyCtx.params.who=='me') { %]
+			1
+		[% } else if(buyCtx.params.who=='plus') { %]
+			[%= buyCtx.params.kids.length+1 %]
+		[% } else { %]
+			[%= buyCtx.params.kids.length %]
+		[% } %]
+	</b></div>
+	<div class="sections">
+		<div onclick="usePeriod('day')" class="section sel_day [%= buyCtx.params.period == 'day'?'selected':'' %]">
+			<div class="minus [%= buyCtx.params.n_days > 1?'on':''%]" onclick="subDay();event.stopPropagation()"></div>
+			<div class="dcon" onclick="usePeriod('day')">
+				<div class="oneday1">[%= buyCtx.params.n_days %]</div><br>
+			</div>
+			<div class="plus [%= buyCtx.params.n_days < 3?'on':''%]" onclick="addDay();event.stopPropagation()"></div>
+			<div class="label">[%= buyCtx.params.n_days == 1?'giorno':'giorni' %]</div>
+			<div class="label prc">€ [%= doSPrice('day') %]</div>
+		</div>
+	</div>
+	<div class="sections mobile">
+		<div onclick="usePeriod('week')" class="more section sel_day [%= buyCtx.params.period == 'week'?'selected':'' %]">
+			7 giorni
+			<div class="label prc">€ [%= doSPrice('week') %]</div>
+		</div>
+		[% if(buyCtx.params.fullcf) { %]
+			<div onclick="usePeriod('month')" class="more section sel_day [%= buyCtx.params.period == 'month'?'selected':'' %]">
+				30 giorni
+				<div class="label prc">€ [%= doSPrice('month') %]</div>
+			</div>
+			<div onclick="usePeriod('year')" class="more section sel_day [%= buyCtx.params.period == 'year'?'selected':'' %]">
+				1 anno
+				<div class="label prc">€ [%= doSPrice('year') %]</div>
+			</div>
+		[% } %]
+	</div>
+	<div class="sections1 desktop">
+		[% var stl = buyCtx.params.fullcf?'':'style="width:100%"'; %]
+		<div class="morer" [%= stl %]>
+			<div onclick="usePeriod('week')" class="more section sel_day [%= buyCtx.params.period == 'week'?'selected':'' %]">
+				7 giorni
+				<div class="label prc1">€ [%= doSPrice('week') %]</div>
+			</div>
+		</div>
+		[% if(buyCtx.params.fullcf) { %]
+			<div class="morer">
+				<div onclick="usePeriod('month')" class="more section sel_day [%= buyCtx.params.period == 'month'?'selected':'' %]">
+					30 giorni
+					<div class="label prc1">€ [%= doSPrice('month') %]</div>
+				</div>
+			</div>
+			<div class="morer">
+				<div onclick="usePeriod('year')" class="more section sel_day [%= buyCtx.params.period == 'year'?'selected':'' %]">
+					1 anno
+					<div class="label prc1">€ [%= doSPrice('year') %]</div>
+				</div>
+			</div>
+		[% } %]
+	</div>
+	<div class="sections">
+		<div style="border:0" class="section">
+			<img class="icon" src="res/ico_date.svg">
+			<h2>Quando vuoi attivarla?</h2>
+			<div style="padding-top:20px;color:#666666;font-size:18px">Seleziona una data</div>
+			<div class="field">
+				[% 
+					var vs = moment(buyCtx.params.validityStart).tz('Europe/Rome');
+					var ve = moment(buyCtx.params.validityEnd).tz('Europe/Rome');
+					var mtd = moment().tz('Europe/Rome');
+					var mst = moment().tz('Europe/Rome');
+				%]
+				<select id="validityStart" onchange="useValidityStart()">
+					[% for (var i = 0; i < 30; i++) { %]
+						[% if(i==0) { %]
+							<option value="[%= mst.valueOf() %]">[% if(mst.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')) { %]Oggi[% }else{ %][%= mst.format('DD/MM/YYYY') %][% } %]</option>
+						[% } else { %]
+							<option value="[%= mst.valueOf() %]" [%= vs.format('YYYY-MM-DD') == mst.format('YYYY-MM-DD')?'selected':'' %]>[%= mst.format('DD/MM/YYYY') %]</option>
+						[% } %]
+						[% mst = mst.add(1, 'days').startOf('day');  %]
+					[% } %]
+				</select>
+				<label for="validityStart"><img src="res/chevron.svg"></label>
+			</div>
+			[% var mtd = moment().tz('Europe/Rome'); %]
+			[% if(buyCtx.params.n_days == 1 && buyCtx.params.period == 'day') { %]
+				<h3>La polizza sarà attiva [%= vs.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')?'oggi':'il' %]</h3>
+				<div class="date">
+					[%= vs.format('DD/MM/YYYY') %]
+					<div class="note">
+						[% if(vs.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')) { %]
+							dal momento dell'acquisto alle ore 24:00
+						[% }else{ %]
+							dalle ore [%= vs.format('HH:mm') %] alle ore 24:00
+						[% } %]
+					</div>
+				</div>
+			[% }else{ %]
+				<h3>La polizza sarà attiva</h3>
+				<div class="dates">
+					<div class="date left">
+						<span>dal</span><br>
+						[%= vs.format('DD/MM/YYYY') %]
+						<div class="note">
+							[% if(vs.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')) { %]
+								dal momento dell'acquisto
+							[% }else{ %]
+								dalle ore [%= vs.format('HH:mm') %]
+							[% } %]
+						</div>
+					</div>
+					<div class="date right">
+						<span>al</span><br>
+						[%= ve.format('DD/MM/YYYY') %]
+						<div class="note">alle ore 24:00</div>
+					</div>
+				</div>
+			[% } %]
+		</div>
+	</div>
+	[%= T('foot2').render() %]
+	[%= T('desktop_step').render({trk:true}) %]
+</div>
+[%= T('header').render({nav:'indietro',navAction:'showStep(1)',navClass:'back',navLogo:null}) %]
+<div class="desktop">[%= T('footer').render() %]</div>
+[%= T('mobile_panel_step').render({trk:true}) %]
+`)
+
+T('buy_prod_3',`
+<div class="home payment smrt">
+	<div class="steps">
+		<div class="step done" onclick="showStep(1)"><div>1</div></div>
+		<div class="sep done"></div>
+		<div class="step done" onclick="showStep(2)"><div>2</div></div>
+		<div class="sep done"></div>
+		<div class="step current"><div>3</div></div>
+		<div class="sep"></div>
+		<div class="step"><div><img src="[%= resPath %]check_w.svg"></div></div>
+	</div>
+	<div class="cover_smrt">
+		<div class="splash_smrt">I tuoi dati di pagamento</div>
+	</div>
+	<h1>
+		<b>Ci siamo quasi,</b><br> inserisci i dati della carta di credito e verifica l'informativa precontrattuale della polizza.
+	</h1>
+	<div class="sections">
+		<div class="section" id="pay">
+			<img class="icon" src="res/ico_pay.svg">
+			<h2>Metodo di pagamento</h2>
+			<div class="stripe">
+				<div class="logo"><img src="[%= resPath %]stripe.svg"></div>
+				<div id="stripe"></div>
+				<div class="stripe-privacy"><a target="_blank" href="https://stripe.com/it-IT/privacy">Informativa Privacy del sistema di pagamento Stripe</a></div>
+			</div>		
+		</div>
+		<div class="section" id="checks">
+			<img class="icon" src="res/ico_legal.svg">
+			<h2>Informativa precontrattuale</h2>
+			<h4>
+				Per poter proseguire, occorre leggere la seguente informativa precontrattuale e, quindi, spuntare le relative caselle.
+			</h4>
+			<h4 style="padding-bottom:20px">
+				Dichiaro di aver ricevuto la seguente documentazione:
+			</h4>
+			<div class="check">
+				<input autocomplete="off" onchange="adjButton()" onfocus="this.removeClass('error')" type="checkbox" id="allegati">
+				<label for="allegati">
+					Le informazioni di cui <a target="_blank" href="[%= buyCtx.product.allegati %]">all'allegato 3 e 4</a> rilasciati dal Distributore.
+				</label>
+			</div>
+			<div class="check">
+				<input autocomplete="off" onchange="adjButton()" onfocus="this.removeClass('error')" type="checkbox" id="contract">
+				<label for="contract">
+					Il <a target="_blank" href="[%= buyCtx.product.setInformativo %]">set informativo</a> della Compagnia assicurativa e la relativa informativa privacy.
+				</label>
+			</div>
+			<div class="check last">
+				<input autocomplete="off" onchange="adjButton()" onfocus="this.removeClass('error')" type="checkbox" id="health">
+				<label for="health">
+					Al fine di permettere la gestione di un eventuale sinistro, acconsento sin da ora che i miei dati personali sulla salute siano trattati
+					da parte della Compagnia assicurativa secondo quanto descritto nell'informativa della stessa.
+				</label>
+			</div>
+			<h4>
+				Ricorda che hai il diritto di richiedere la documentazione di legge in formato cartaceo 
+				scrivendoci a <a href="mailto:wecare@netinsurance.it">wecare@netinsurance.it</a>
+			</h4>
+		</div>
+	</div>
+	<div class="adq" id="adq">
+		Sei sicuro di non avere acquistato altre assicurazioni che coprono lo stesso rischio per gli stessi beneficiari?
+		<div class="dual">
+			<div>
+				SI<br>
+				<input onfocus="getById('adq_y').removeClass('error');getById('adq_n').removeClass('error')" type="radio" name="adq" id="adq_y" onchange="showAde()">
+			</div>
+			<div>
+				NO<br>
+				<input onfocus="getById('adq_y').removeClass('error');getById('adq_n').removeClass('error')" type="radio" name="adq" id="adq_n" onchange="showAde()">
+			</div>
+		</div>
+	</div>
+	<div class="ade hidden" id="ade">
+		<div id="ignore">
+			<div class="sad"><img src="res/sad.svg"></div>
+			<div class="bad">
+				La tua risposta non è coerente con le tue esigenze espresse. Hai comunque il diritto di concludere il contratto.
+			</div>
+		</div>
+		<div id="ade_ok" class="hidden">
+			<div class="atto">
+				La compagnia prende atto della volontà dell'assicurato di sottoscrivere la polizza proposta 
+			</div>
+		</div>
+		<div id="voglio" class="voglio">
+			Voglio procedere comunque con la sottoscrizione della polizza.<br>
+			<input id="adq_f" type="checkbox" onchange="toggleAde(this)"> 
+		</div>
+		<div id="ade_ko">
+			<button onclick="backPrd()">indietro</button>
+		</div>
+	</div>
+	<div class="mobile clicking" id="clicking">
+		Cliccando su completa acquisto eseguirai il pagamento
+	</div>
+	[%= T('desktop_price').render() %]
+	[%= T('foot2').render() %]
+</div>
+[%= T('header').render({nav:'indietro',navAction:'showStep(2)',navClass:'back',navLogo:null}) %]
+<div class="desktop">[%= T('footer').render() %]</div>
+[%= T('mobile_panel').render() %]
+`)
+
+T('stripe',`
+[% for(var i = 0; stripeSources && i < stripeSources.length; i++) { %]
+	<div onclick="selectPaymentSrc('[%= stripeSources[i].id %]')" id="[%= stripeSources[i].id %]" class="stripe-row [% if(stripeSources[i].id == stripeDefaultSource) { %]selected[% } %]">
+		[% if(stripeSources[i].brand.toLowerCase().indexOf('visa') >=0) { %]
+			<img src="[%= resPath %]visa.svg">
+		[% } else if(stripeSources[i].brand.toLowerCase().indexOf('master') >=0) { %]
+			<img src="[%= resPath %]master.svg">
+		[% } else if(stripeSources[i].brand.toLowerCase().indexOf('american') >=0) { %]
+			<img src="[%= resPath %]amex.svg">
+		[% } else { %]
+			<img src="[%= resPath %]cc.svg">
+		[% } %]
+		<span>●●●● ●●●● ●●●●</span> [%= stripeSources[i].last4 %]
+	</div>
+[% } %]
+<div style="height:44px;">
+	<div id="addCard" onclick="addCard()" style="[% if(!stripeSources || stripeSources.length == 0) { %] display:none; [% } %]">Aggiungi metodo di pagamento</div>
+	<form action="/charge" method="post" id="payment-form" style="[% if(stripeSources && stripeSources.length > 0) { %] display:none [% } %]">
+		<div id="card-element"></div>
+		<div id="card-errors" role="alert"></div>
+	</form>
+</div>
+`)
+
+T('mobile_panel_step',`
+<div class="mobile panel_smrt" id="panel_smrt">
+	[%= buyCtx.step > 1?T('panel_price').render(ctx):'' %]
+	<div class="panel_btn">
+		<button onclick="showStep(buyCtx.step+1,[%= trk?'true':'false' %])">continua</button>
+	</div>
+</div>
+`)
+
+T('desktop_step',`
+<div class="desktop sections">
+	<div class="section_sep"></div>
+</div>
+<div class="desktop price_smrt" id="price_smrt">
+	[%= buyCtx.step > 1?T('desktop_price_price').render(ctx):'' %]
+	<div class="desktop_btn">
+		<button onclick="showStep(buyCtx.step+1,[%= trk?'true':'false' %])">continua</button>
+	</div>
+</div>
+`)
+
+T('mobile_panel',`
+<div class="mobile panel_smrt" id="panel_smrt">
+	[%= T('panel_price').render(ctx) %]
+	<div class="panel_btn">
+		<button id="buyButtonM" class="disabled">completa acquisto</button>
+	</div>
+</div>
+`)
+
+T('desktop_price',`
+<div class="desktop sections">
+	<div class="section_sep"></div>
+</div>
+<div class="desktop price_smrt" id="price_smrt">
+	<div style="padding-top:0px" class="clicking" id="clicking">
+		Cliccando su completa acquisto eseguirai il pagamento
+	</div>
+	[%= T('desktop_price_price').render(ctx) %]
+	<div class="desktop_btn">
+		<button id="buyButton" class="disabled">completa acquisto</button>
+	</div>
+</div>
+`)
+
+T('panel_price',`
+<div class="panel_price">
+	<div style="text-align:left">
+		Durata:
+		<b>
+			[% if(buyCtx.params.period == 'day' && buyCtx.params.n_days == 1) { %]
+				1 giorno
+			[% } else if(buyCtx.params.period == 'day') { %]
+				[%= buyCtx.params.n_days %] giorni
+			[% } else if(buyCtx.params.period == 'week') { %]
+				7 giorni
+			[% } else if(buyCtx.params.period == 'month') { %]
+				30 giorni
+			[% } else if(buyCtx.params.period == 'year') { %]
+				1 anno
+			[% } %]
+		</b>
+	</div>
+	<div style="text-align:right">Premio: <span id="priceM">€ [%= doSPrice() %]</span></div>
+</div>
+`)
+
+T('desktop_price_price',`
+<div class="desktop_price">
+	<div style="text-align:left">
+		Durata:
+		<b style="color:#0073d2">
+			[% if(buyCtx.params.period == 'day' && buyCtx.params.n_days == 1) { %]
+				1 giorno
+			[% } else if(buyCtx.params.period == 'day') { %]
+				[%= buyCtx.params.n_days %] giorni
+			[% } else if(buyCtx.params.period == 'week') { %]
+				7 giorni
+			[% } else if(buyCtx.params.period == 'month') { %]
+				30 giorni
+			[% } else if(buyCtx.params.period == 'year') { %]
+				1 anno
+			[% } %]
+		</b>
+	</div>
+	<div style="text-align:right">Premio: <span>€ [%= doSPrice() %]</span></div>
+</div>
+`)
+
+T('congrats',`
+<div class="home congrats smrt">
+	<div class="steps">
+		<div class="step done"><div>1</div></div>
+		<div class="sep done"></div>
+		<div class="step done"><div>2</div></div>
+		<div class="sep done"></div>
+		<div class="step done"><div>3</div></div>
+		<div class="sep done"></div>
+		<div class="step complete"><div><img src="[%= resPath %]check.svg"></div></div>
+	</div>
+	<div class=confirm>
+		<img class="smile" src="res/buy_ok.svg">
+		<h1>Acquisto completato con successo!</h1>
+		<p>
+			Grazie <b>[%= encodeHTML(buyCtx.profile.firstname) %]</b>, la polizza è stata attivata.<br>
+			Ti abbiamo inviato una email di riepilogo con le informazioni di dettaglio della polizza acquistata.
+		</p>
+		<img style="height:32px" class="mail" src="res/mail_b.svg">
+	</div>
+	<div class="validity">
+		<h1>La polizza è valida</h1>
+		[% 
+			var vs = moment(buyCtx.policy.validityStart).tz('Europe/Rome');
+			var ve = moment(buyCtx.policy.validityEnd).tz('Europe/Rome'); 
+			var mtd = moment().tz('Europe/Rome'); 
+		%]
+		[% if(vs.format('YYYY-MM-DD') == ve.format('YYYY-MM-DD')) {%]
+			<div>
+				[%= vs.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')?'oggi':'il giorno' %]<br>
+				<span>[%= vs.format('DD/MM/YYYY') %]</span>
+				<div class="note"> dalle ore [%= vs.format('HH:mm') %] alle ore 24:00</div>
+			</div>
+		[% }else{ %]
+			<div>
+				[%= vs.format('YYYY-MM-DD') == mtd.format('YYYY-MM-DD')?'da oggi':'dal giorno' %]<br>
+				<span>[%= vs.format('DD/MM/YYYY') %]</span>
+				<div class="note">dalle ore [%= vs.format('HH:mm') %]</div>
+			</div>
+			<div>
+				al giorno<br>
+				<span>[%= ve.format('DD/MM/YYYY') %]</span>
+				<div class="note">alle ore 24:00</div>
+			</div>
+		[% } %]
+	</div>
+	<div class="assistenza">
+		<h1>
+			Come posso denunciare un infortunio?<br>
+			<span>puoi farlo dall'area</span>
+		</h1>
+		<div class="tel">
+			<a href="../history"><b>Le mie polizze</b></a>
+		</div>
+		<h1>
+			<span>o inviando una mail a:</span>
+		</h1>	
+		<h2 style="margin-bottom:20px">
+			<a style="color:#333333" href="mailto:claims@netinsurance.it">claims@netinsurance.it</a>
+		</h2>
+		<h1>
+			<span>o scrivendo a:</span>
+		</h1>	
+		<h2>
+			<b>Net Insurance S.p.A. c/o Casella Postale 106, 26100 Cremona - Italia</b>
+		</h2>
+	</div>
+	<div class="details">
+		<h1>Dettagli della polizza</h1>
+		<p>
+			Data di acquisto: <b>[%= moment(buyCtx.policy.validityStart).tz('Europe/Rome').format('DD/MM/YYYY') %]</b><br>
+			[% if(hasLength(buyCtx.policy.policyCode)) { %]
+				Numero polizza: <b>[%= buyCtx.policy.policyCode %]</b><br>
+			[% } %]
+			Persone coperte dall'assicurazione:<br>
+			[% if(buyCtx.policy.parameters.who != 'others') { %]
+				<b>[%= encodeHTML(buyCtx.profile.firstname) %] [%= encodeHTML(buyCtx.profile.lastname) %]</b><br> 
+			[% } %]
+			[% if(buyCtx.policy.parameters.who != 'me') { %]
+				[% for(var i=0; i < buyCtx.policy.parameters.kids.length; i++) { var kid = buyCtx.policy.parameters.kids[i]; %]
+					<b>[%= encodeHTML(kid.firstname) %] [%= encodeHTML(kid.lastname) %]</b><br> 
+				[% } %]
+			[% } %]
+			Premio: <b>€ [%= buyCtx.policy.premium %]</b><br>
+		</p>
+	</div>
+	<div class="docs">
+		<h1>Documentazione contrattuale</h1>
+		<a target="_blank" href="[%= buyCtx.product.allegati %]">
+			<img src="[%= resPath %]pdf.svg">Allegati 3 e 4<br>
+		</a>
+		<a target="_blank" href="[%= buyCtx.product.setInformativo %]">
+			<img src="[%= resPath %]pdf.svg">Set informativo<br>
+		</a>
+		[% if(buyCtx.policy.documents.NET_policy) { %]
+		<a target="_blank" href="[%= buyCtx.policy.documents.NET_policy.pdf %]">
+			<img src="[%= resPath %]pdf.svg">Certificato di polizza<br>
+		</a>
+		[% } else if(buyCtx.policy.documents.policy) { %]
+		<a target="_blank" href="[%= buyCtx.policy.documents.policy.pdf %]">
+			<img src="[%= resPath %]pdf.svg">Certificato di polizza<br>
+		</a>
+		[% } %]
+	</div>
+	<div class="remember">
+		In caso di reclamo puoi scrivere a:<br>
+		<b>Net Insurance S.p.A.<br>
+		C.A. Ufficio Reclami - Via Giuseppe Antonio Guattani, 4 - 00161 ROMA<br>
+		Fax: +39 06 89326570<br>
+		PEC: ufficio.reclami@pec.netinsurance.it</b><br>
+		<br>
+		<br>
+	</div>
+</div>
+[%= T('header').render({nav:'Net Sport',navAction:'goGroup()',navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+`)
+
+T('foot2',`
+<div class="mobile foot2">
+	<img style="margin-bottom:8px;height:15px;opacity:0.6" src="[%= resPath %]logo-bpsa-g.svg"><br>	
+	Banca Popolare Sant'Angelo Società cooperativa per azioni, con sede in Corso Vittorio Emanuele 10, 92027 - Licata (AG)<br>
+	Uffici Direttivi in Via Enrico Albanese 94, 90139 - Palermo (PA)<br>
+	Iscritta al Registro delle Imprese di Agrigento CF/Partita IVA 00089160840<br>
+	Iscrizione all'Albo delle Banche n. 1571, iscrizione REA n. AG 19267<br>
+	Telefono: 0922.860111 │ PEC: direzionegenerale@postacert.bancasantangelo.com │ Iscrizione RUI : D000109153
+</div>
+`)

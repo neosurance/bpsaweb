@@ -1,0 +1,158 @@
+T('claim',`
+[% var policy = claimCtx.policy; %]
+<div class="home claim">
+	<div class="max800">
+		<div style="padding-top:30px;font-size:24px;font-weight:700">
+			Ci spiace [%= encodeHTML(policy.profile.firstname) %] per quello che è accaduto
+		</div>
+		<div style="font-size:14px">
+			Noi ci siamo! Aiutaci a raccogliere tutte le informazioni utili per richiedere il tuo indennizzo.
+		</div>
+		<div class="splitbox">
+			<div class="det">
+				Polizza:<br>
+				<p style="margin-top:4px;font-weight:600;font-size:24px;color: #0073d2">Net Bike</p>
+				<br>
+				Numero polizza: <b>[%= policy.policyCode %]</b><br>
+				<br>
+				Persone coperte dall'assicurazione:<br>
+				[% if(policy.parameters.who != 'others') { %]
+					<b>[%= encodeHTML(policy.profile.firstname) %] [%= encodeHTML(policy.profile.lastname) %]</b><br> 
+				[% } %]
+				[% if(policy.parameters.who != 'me') { %]
+					[% for(var i=0; i < policy.parameters.kids.length; i++) { var kid = policy.parameters.kids[i]; %]
+						<b>[%= encodeHTML(kid.firstname) %] [%= encodeHTML(kid.lastname) %]</b><br> 
+					[% } %]
+				[% } %]
+			</div><div class="vld">
+				<p style="font-weight:700;margin-bottom:8px">Polizza valida</p>
+				dal<br>
+				[%
+					var vs = new moment(policy.validityStart).tz('Europe/Rome');
+					var ve = new moment(policy.validityEnd).tz('Europe/Rome');
+				%]
+				<p class="day">[%= vs.format('DD/MM/YYYY') %]</p>
+				<p class="time">dalle ore <b>[%= vs.format('HH:mm') %]</b></p>
+				al<br>
+				<p class="day">[%= ve.format('DD/MM/YYYY') %]</p>
+				<p class="time">alle ore <b>24:00</b></p>
+			</div>
+		</div>
+		<div class="questions">
+			<div class="question l">
+				<span>1.</span> Quando è avvenuto il sinistro?
+				<select onfocus="this.removeClass('error')" class="empty" id="when" onchange="adjSelect(this);;storeClaimPayload()">
+					<option value="">Seleziona la data del sinistro</option>
+					[% for (var is = new moment(policy.validityStart).tz('Europe/Rome'); is.valueOf() < policy.validityEnd; is=is.add(1, 'days')) { %]
+						<option value="[%= is.format('DD/MM/YYYY') %]">[%= is.format('DD/MM/YYYY') %]</option>
+					[% } %]
+				</select>
+				<label style="top:73px" for="when">Questo campo è obbligatorio</label>
+				<select onfocus="this.removeClass('error')" class="empty" id="time" onchange="adjSelect(this);storeClaimPayload()">
+					<option value="">Seleziona l'ora del sinistro</option>
+					[% for (var i = 0; i < 24; i++) { %]
+						<option value="[%= i>9?i:'0'+i %]:00">[%= i>9?i:'0'+i %]:00</option>
+					[% } %]
+				</select>
+				<label style="top:128px" for="time">Questo campo è obbligatorio</label>
+			</div>
+			<div class="question r">
+				<span>2.</span> Dove?
+				<div style="position:relative">
+					<textarea onfocus="this.removeClass('error')" style="height:120px" id="where" placeholder="Inserisci l'indirizzo del luogo del sinistro." onblur="storeClaimPayload()"></textarea>
+					<label style="left:0px;top:130px" for="where">Questo campo è obbligatorio</label>
+				</div>
+			</div>
+			<div class="question">
+				<span>3.</span> Raccontaci cosa è successo
+				<div style="position:relative">
+					<textarea onfocus="this.removeClass('error')" style="height:120px" id="what" placeholder="Raccontaci nel dettaglio in che modo è avvenuto il sinistro." onblur="storeClaimPayload()"></textarea>
+					<label style="left:0px;top:130px" for="what">Questo campo è obbligatorio</label>
+				</div>
+			</div>
+			[% if(policy.parameters.period == 'year') { %]
+				<div class="question">
+					<span>4.</span> Sono state coinvolte nell'incidente altre persone non presenti tra gli assicurati?<br>
+					<span style="color:#333333;font-weight:300;font-size:13px">(Garanzia responsabilità Civile Terzi)</span>
+					<textarea style="height:120px" id="who" placeholder="Inserisci i dati anagrafici delle persone non presenti tra gli assicurati coinvolte nell'incidente" onblur="storeClaimPayload()"></textarea>
+				</div>
+			[% } %]
+			<div class="question">
+				<img style="height:18px;vertical-align:middle" src="clip.svg"> Allega documentazione
+				<div class="note">Inserisci la documentazione necessaria:</div>				
+			</div>
+			<div class="question">
+				<div class="directions">Certificato di pronto soccorso</div>
+				<div class="photos" id="med">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="certificatoPS" name="certificatoPS" type="file" onchange="addPhoto(this,'med')" accept=".jpg,.jpeg,.png">
+						<label for="certificatoPS">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+				<div class="directions">Esame radiografico</div>
+				<div class="photos" id="rad">
+					<div class="add">
+						<img src="add_photo.svg">
+						<input onfocus="this.removeClass('error')" id="esameRadio" name="esameRadio" type="file" onchange="addPhoto(this,'rad')" accept=".jpg,.jpeg,.png">
+						<label for="esameRadio">È necessario inserire almeno una foto</label>
+					</div>
+				</div>
+				[% if(policy.parameters.period == 'year') { %]
+					<div style="margin-top:20px;margin-bottom:20px;height:1px;background-color:#cccccc"></div>
+					<div class="directions">
+						Verbale dell'autorità intervenuta<br>
+						<span style="color:#333333;font-weight:300;font-size:13px">(Garanzia responsabilità Civile Terzi)</span>
+					</div>
+					<div class="photos" id="ter">
+						<div class="add">
+							<img src="add_photo.svg">
+							<input type="file" onchange="addPhoto(this,'ter')" accept=".jpg,.jpeg,.png">
+						</div>
+					</div>
+				[% } %]
+			</div>
+		</div>
+		<div style="padding-bottom:180px">
+			<button style="width:100%;max-width:300px" onclick="sendClaim()">
+				[%= policy.claimTime?'aggiorna':'invia' %] documentazione
+			</button>
+		</div>
+	</div>
+</div>
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+T('photo',`
+	<div class="photo">
+		<img src="[%= imgData %]">
+		<div onclick="removePhoto(this)"><img src="remove.svg"></div>
+	</div>
+`)
+
+T('sent',`
+[% var policy = claimCtx.policy; %]
+<div class="home claim">
+	<div class=confirm>
+		<img style="height:50px" src="check.svg">
+		<h1>Documentazione<br class="mobile"> [%= policy.claimTime?'aggiornata':'inviata' %]</h1>
+		<img style="margin-top:0px;margin-bottom:30px;height:32px" class="mail" src="../res/mail_b.svg">
+		<p>
+			Riceverai una mail di conferma dell'invio della documentazione aggiornata con i riferimenti di contatto dell'assicurazione.
+		</p>
+		<div style="padding-top:60px;padding-bottom:180px">
+			<button style="width:100%;max-width:300px" onclick="goTo('history')">
+				Le mie polizze
+			</button>
+		</div>
+	</div>
+</div>	
+[%= T('header').render({nav:'Le mie polizze',navAction:"goTo('history')",navClass:null,navLogo:null}) %]
+[%= T('footer').render() %]
+[%= T('cookie').render() %]
+`)
+
+

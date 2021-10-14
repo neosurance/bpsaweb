@@ -1,0 +1,27 @@
+@keyframes shake {
+	0%, 100% {
+		left: 50%;
+	}
+  10%, 30%, 50%, 70%, 90% {
+		left: 48%;
+	}
+  20%, 40%, 60%, 80% {
+		left: 52%;
+	}
+}
+
+@keyframes spinner {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
+.shake {
+	animation-name: shake;
+	animation-duration: 0.75s;
+	animation-fill-mode: both;
+}
+

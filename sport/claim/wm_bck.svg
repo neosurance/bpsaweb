@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="300" height="100" viewBox="0, 0, 300, 100">
+  <defs>
+    <clipPath id="Clip_1">
+      <path d="M85.321,84.521 L53.659,52.86 L53.659,63.809 C53.558,67.622 50.384,70.631 46.571,70.529 C42.899,70.431 39.947,67.479 39.849,63.809 L39.849,39.05 L26.044,25.244 L26.044,77.619 C26.054,81.426 29.138,84.51 32.946,84.521 L85.321,84.521 z"/>
+    </clipPath>
+    <clipPath id="Clip_2">
+      <path d="M95.086,74.757 L95.086,22.382 C95.075,18.574 91.991,15.49 88.183,15.479 L35.808,15.479 L67.469,47.14 L67.469,36.192 C67.469,32.38 70.56,29.289 74.373,29.289 C78.185,29.289 81.276,32.38 81.276,36.192 L81.276,60.946 L95.086,74.757 z"/>
+    </clipPath>
+  </defs>
+  <g id="Livello_1">
+    <path d="M0,0 L300,0 L300,100 L0,100 L0,0 z" fill="#000000" fill-opacity="0.5"/>
+    <g>
+      <g clip-path="url(#Clip_1)">
+        <path d="M18,17.2 L93.365,17.2 L93.365,92.565 L18,92.565 z" fill="#FFFFFF" fill-opacity="0.505"/>
+      </g>
+      <g clip-path="url(#Clip_2)">
+        <path d="M27.764,7.435 L103.13,7.435 L103.13,82.801 L27.764,82.801 z" fill="#FFFFFF" fill-opacity="0.505"/>
+      </g>
+    </g>
+  </g>
+</svg>
